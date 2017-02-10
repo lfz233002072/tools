@@ -1,0 +1,3595 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharpCompress</name>
+    </assembly>
+    <members>
+        <member name="F:SharpCompress.Common.ArchiveEncoding.Default">
+            <summary>
+            Default encoding to use when archive format doesn't specify one.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Common.ArchiveEncoding.Password">
+            <summary>
+            Encoding used by encryption schemes which don't comply with RFC 2898.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.IArchive.ExtractAllEntries">
+            <summary>
+            Use this method to extract all entries in an archive in order.
+            This is primarily for SOLID Rar Archives or 7Zip Archives as they need to be 
+            extracted sequentially for the best performance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SharpCompress.Archive.IArchive.IsSolid">
+            <summary>
+            Archive is SOLID (this means the Archive saved bytes by reusing information which helps for archives containing many small files).
+            Rar Archives can be SOLID while all 7Zip archives are considered SOLID.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Archive.IArchive.IsComplete">
+            <summary>
+            This checks to see if all the known entries have IsComplete = true
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.AbstractArchive`2.ExtractAllEntries">
+            <summary>
+            Use this method to extract all entries in an archive in order.
+            This is primarily for SOLID Rar Archives or 7Zip Archives as they need to be 
+            extracted sequentially for the best performance.
+            
+            This method will load all entry information from the archive.
+            
+            WARNING: this will reuse the underlying stream for the archive.  Errors may 
+            occur if this is used at the same time as other extraction methods on this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SharpCompress.Archive.AbstractArchive`2.Entries">
+            <summary>
+            Returns an ReadOnlyCollection of all the RarArchiveEntries across the one or many parts of the RarArchive.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SharpCompress.Archive.AbstractArchive`2.Volumes">
+            <summary>
+            Returns an ReadOnlyCollection of all the RarArchiveVolumes across the one or many parts of the RarArchive.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SharpCompress.Archive.AbstractArchive`2.TotalSize">
+            <summary>
+            The total size of the files compressed in the archive.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Archive.AbstractArchive`2.IsSolid">
+            <summary>
+            Archive is SOLID (this means the Archive saved bytes by reusing information which helps for archives containing many small files).
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Archive.AbstractArchive`2.IsComplete">
+            <summary>
+            The archive can find all the parts of the archive needed to fully extract the archive.  This forces the parsing of the entire archive.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.ArchiveFactory.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Opens an Archive for random access
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Archive.ArchiveFactory.Open(System.String)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.ArchiveFactory.Open(System.IO.FileInfo)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.ArchiveFactory.Open(System.String,SharpCompress.Common.Options)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.ArchiveFactory.Open(System.IO.FileInfo,SharpCompress.Common.Options)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.ArchiveFactory.WriteToDirectory(System.String,System.String,SharpCompress.Common.ExtractOptions)">
+            <summary>
+            Extract to specific directory, retaining filename
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.Crc">
+            <summary>
+            The File's 32 bit CRC Hash
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.FilePath">
+            <summary>
+            The path of the file internal to the Rar Archive.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.CompressedSize">
+            <summary>
+            The compressed file size
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.CompressionType">
+            <summary>
+            The compression type
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.Size">
+            <summary>
+            The uncompressed file size
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.LastModifiedTime">
+            <summary>
+            The entry last modified time in the archive, if recorded
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.CreatedTime">
+            <summary>
+            The entry create time in the archive, if recorded
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.LastAccessedTime">
+            <summary>
+            The entry last accessed time in the archive, if recorded
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.ArchivedTime">
+            <summary>
+            The entry time whend archived, if recorded
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.IsEncrypted">
+            <summary>
+            Entry is password protected and encrypted and cannot be extracted.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Entry.IsDirectory">
+            <summary>
+            Entry is password protected and encrypted and cannot be extracted.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.IArchiveEntry.OpenEntryStream">
+            <summary>
+            Opens the current entry as a stream that will decompress as it is read.
+            Read the entire stream or use SkipEntry on EntryStream.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Archive.IArchiveEntry.IsComplete">
+            <summary>
+            The archive can find all the parts of the archive needed to extract this entry.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.IArchiveExtensions.WriteToDirectory(SharpCompress.Archive.IArchive,System.String,SharpCompress.Common.ExtractOptions)">
+            <summary>
+            Extract to specific directory, retaining filename
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.GZip.GZipArchive.Open(System.String)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.GZip.GZipArchive.Open(System.IO.FileInfo)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.GZip.GZipArchive.Open(System.String,SharpCompress.Common.Options)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.GZip.GZipArchive.Open(System.IO.FileInfo,SharpCompress.Common.Options)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.GZip.GZipArchive.Open(System.IO.Stream)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.GZip.GZipArchive.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.GZip.GZipArchive.#ctor(System.IO.FileInfo,SharpCompress.Common.Options)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.GZip.GZipArchive.#ctor(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Takes multiple seekable Streams for a multi-part archive
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+        </member>
+        <member name="T:SharpCompress.Common.Rar.RarVolume">
+            <summary>
+            A RarArchiveVolume is a single rar file that may or may not be a split RarArchive.  A Rar Archive is one to many Rar Parts
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.IVolume.VolumeFile">
+            <summary>
+            File that backs this volume, if it not stream based
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Volume.IsFirstVolume">
+            <summary>
+            RarArchive is the first volume of a multi-part archive.
+            Only Rar 3.0 format and higher
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Volume.IsMultiVolume">
+            <summary>
+            RarArchive is part of a multi-part archive.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarVolume.IsFirstVolume">
+            <summary>
+            RarArchive is the first volume of a multi-part archive.
+            Only Rar 3.0 format and higher
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarVolume.IsMultiVolume">
+            <summary>
+            RarArchive is part of a multi-part archive.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarVolume.IsSolidArchive">
+            <summary>
+            RarArchive is SOLID (this means the Archive saved bytes by reusing information which helps for archives containing many small files).
+            Currently, SharpCompress cannot decompress SOLID archives.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.SevenZip.SevenZipArchive.Open(System.String)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.SevenZip.SevenZipArchive.Open(System.IO.FileInfo)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.SevenZip.SevenZipArchive.Open(System.String,SharpCompress.Common.Options)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.SevenZip.SevenZipArchive.Open(System.IO.FileInfo,SharpCompress.Common.Options)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.SevenZip.SevenZipArchive.Open(System.IO.Stream)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.SevenZip.SevenZipArchive.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+        </member>
+        <member name="T:SharpCompress.Reader.AbstractReader`2">
+            <summary>
+            A generic push reader that reads unseekable comrpessed streams.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Reader.IReader.WriteEntryTo(System.IO.Stream)">
+            <summary>
+            Decompresses the current entry to the stream.  This cannot be called twice for the current entry.
+            </summary>
+            <param name="writableStream"></param>
+        </member>
+        <member name="M:SharpCompress.Reader.IReader.MoveToNextEntry">
+            <summary>
+            Moves to the next entry by reading more data from the underlying stream.  This skips if data has not been read.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Reader.IReader.OpenEntryStream">
+            <summary>
+            Opens the current entry as a stream that will decompress as it is read.
+            Read the entire stream or use SkipEntry on EntryStream.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Reader.AbstractReader`2.Volume">
+            <summary>
+            Current volume that the current entry resides in
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Reader.AbstractReader`2.Entry">
+            <summary>
+            Current file entry 
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.Tar.TarArchive.Open(System.String)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Tar.TarArchive.Open(System.IO.FileInfo)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Tar.TarArchive.Open(System.String,SharpCompress.Common.Options)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Tar.TarArchive.Open(System.IO.FileInfo,SharpCompress.Common.Options)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Tar.TarArchive.Open(System.IO.Stream)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Tar.TarArchive.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Tar.TarArchive.#ctor(System.IO.FileInfo,SharpCompress.Common.Options)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Tar.TarArchive.#ctor(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Takes multiple seekable Streams for a multi-part archive
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Zip.ZipArchive.Open(System.String,System.String)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Zip.ZipArchive.Open(System.IO.FileInfo,System.String)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Zip.ZipArchive.Open(System.String,SharpCompress.Common.Options,System.String)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+            <param name="options"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Zip.ZipArchive.Open(System.IO.FileInfo,SharpCompress.Common.Options,System.String)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Zip.ZipArchive.Open(System.IO.Stream,System.String)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Zip.ZipArchive.Open(System.IO.Stream,SharpCompress.Common.Options,System.String)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Zip.ZipArchive.#ctor(System.IO.FileInfo,SharpCompress.Common.Options,System.String)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Zip.ZipArchive.#ctor(System.IO.Stream,SharpCompress.Common.Options,System.String)">
+            <summary>
+            Takes multiple seekable Streams for a multi-part archive
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+            <param name="password"></param>
+        </member>
+        <member name="P:SharpCompress.Archive.Zip.ZipArchive.DeflateCompressionLevel">
+            <summary>
+            Gets or sets the compression level applied to files added to the archive,
+            if the compression method is set to deflate
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.CompressedBytesReadEventArgs.CompressedBytesRead">
+            <summary>
+            Compressed bytes read for the current entry
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.CompressedBytesReadEventArgs.CurrentFilePartCompressedBytesRead">
+            <summary>
+            Current file part read for Multipart files (e.g. Rar)
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Common.CompressionInfo">
+            <summary>
+            Detailed compression properties when saving.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.CompressionInfo.Type">
+            <summary>
+            The algorthm to use.  Must be valid for the format type.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.CompressionInfo.DeflateCompressionLevel">
+            <summary>
+            When CompressionType.Deflate is used, this property is referenced.  Defaults to CompressionLevel.Default.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.FilePartExtractionBeginEventArgs.Name">
+            <summary>
+            File name for the part for the current entry
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.FilePartExtractionBeginEventArgs.Size">
+            <summary>
+            Uncompressed size of the current entry in the part
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.FilePartExtractionBeginEventArgs.CompressedSize">
+            <summary>
+            Compressed size of the current entry in the part
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.GenericVolume.VolumeFile">
+            <summary>
+            File that backs this volume, if it not stream based
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Common.FlagUtility.HasFlag``1(System.Int64,``0)">
+            <summary>
+            Returns true if the flag is set on the specified bit field.
+            Currently only works with 32-bit bitfields. 
+            </summary>
+            <typeparam name="T">Enumeration with Flags attribute</typeparam>
+            <param name="bitField">Flagged variable</param>
+            <param name="flag">Flag to test</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Common.FlagUtility.HasFlag``1(System.UInt64,``0)">
+            <summary>
+            Returns true if the flag is set on the specified bit field.
+            Currently only works with 32-bit bitfields. 
+            </summary>
+            <typeparam name="T">Enumeration with Flags attribute</typeparam>
+            <param name="bitField">Flagged variable</param>
+            <param name="flag">Flag to test</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Common.FlagUtility.HasFlag(System.UInt64,System.UInt64)">
+            <summary>
+            Returns true if the flag is set on the specified bit field.
+            Currently only works with 32-bit bitfields. 
+            </summary>
+            <param name="bitField">Flagged variable</param>
+            <param name="flag">Flag to test</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Common.FlagUtility.HasFlag``1(``0,``0)">
+            <summary>
+            Returns true if the flag is set on the specified bit field.
+            Currently only works with 32-bit bitfields. 
+            </summary>
+            <typeparam name="T">Enumeration with Flags attribute</typeparam>
+            <param name="bitField">Flagged variable</param>
+            <param name="flag">Flag to test</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Common.FlagUtility.HasFlag(System.Int64,System.Int64)">
+            <summary>
+            Returns true if the flag is set on the specified bit field.
+            Currently only works with 32-bit bitfields. 
+            </summary>
+            <param name="bitField">Flagged variable</param>
+            <param name="flag">Flag to test</param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Common.FlagUtility.SetFlag``1(System.Int64,``0,System.Boolean)">
+            <summary>
+            Sets a bit-field to either on or off for the specified flag.
+            </summary>
+            <typeparam name="T">Enumeration with Flags attribute</typeparam>
+            <param name="bitField">Flagged variable</param>
+            <param name="flag">Flag to change</param>
+            <param name="on">bool</param>
+            <returns>The flagged variable with the flag changed</returns>
+        </member>
+        <member name="M:SharpCompress.Common.FlagUtility.SetFlag``1(``0,``0,System.Boolean)">
+            <summary>
+            Sets a bit-field to either on or off for the specified flag.
+            </summary>
+            <typeparam name="T">Enumeration with Flags attribute</typeparam>
+            <param name="bitField">Flagged variable</param>
+            <param name="flag">Flag to change</param>
+            <param name="on">bool</param>
+            <returns>The flagged variable with the flag changed</returns>
+        </member>
+        <member name="P:SharpCompress.Common.GZip.GZipVolume.VolumeFile">
+            <summary>
+            File that backs this volume, if it not stream based
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Common.ExtractOptions.Overwrite">
+            <summary>
+            overwrite target if it exists
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Common.ExtractOptions.ExtractFullPath">
+            <summary>
+            extract with internal directory structure
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.BZip2.BZip2Constants">
+             Base class for both the compress and decompress classes.
+             Holds common arrays, and static data.
+            
+             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
+        </member>
+        <member name="M:SharpCompress.Compressor.BZip2.BZip2Stream.#ctor(System.IO.Stream,SharpCompress.Compressor.CompressionMode,System.Boolean,System.Boolean)">
+            <summary>
+            Create a BZip2Stream
+            </summary>
+            <param name="stream">The stream to read from</param>
+            <param name="compressionMode">Compression Mode</param>
+            <param name="leaveOpen">Leave the underlying stream open when disposed.</param>
+            <param name="decompressContacted">Should the BZip2 stream continue to decompress the stream when the End Marker is found.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.BZip2.BZip2Stream.IsBZip2(System.IO.Stream)">
+            <summary>
+            Consumes two bytes to test if there is a BZip2 header
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpCompress.Compressor.BZip2.CBZip2InputStream">
+             An input stream that decompresses from the BZip2 format (with the file
+             header chars) to be read as any other stream.
+            
+             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
+            
+             <b>NB:</b> note this class has been modified to read the leading BZ from the
+             start of the BZIP2 stream to make it compatible with other PGP programs.
+        </member>
+        <member name="T:SharpCompress.Compressor.BZip2.CBZip2OutputStream">
+             An output stream that compresses into the BZip2 format (with the file
+             header chars) into another stream.
+            
+             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
+            
+             TODO:    Update to BZip2 1.0.1
+             <b>NB:</b> note this class has been modified to add a leading BZ to the
+             start of the BZIP2 stream to make it compatible with other PGP programs.
+        </member>
+        <member name="M:SharpCompress.Compressor.BZip2.CBZip2OutputStream.WriteByte(System.Byte)">
+            
+             modified by Oliver Merkel, 010128
+            
+        </member>
+        <member name="T:SharpCompress.Compressor.BZip2.CRC">
+             A simple class the hold and calculate the CRC for sanity checking
+             of the data.
+            
+             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.FlushType">
+            <summary>
+            Describes how to flush the current deflate operation. 
+            </summary>
+            <remarks>
+            The different FlushType values are useful when using a Deflate in a streaming application.
+            </remarks>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.FlushType.None">
+            <summary>No flush at all.</summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.FlushType.Partial">
+            <summary>Closes the current block, but doesn't flush it to
+            the output. Used internally only in hypothetical
+            scenarios.  This was supposed to be removed by Zlib, but it is
+            still in use in some edge cases. 
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.FlushType.Sync">
+            <summary>
+            Use this during compression to specify that all pending output should be
+            flushed to the output buffer and the output should be aligned on a byte
+            boundary.  You might use this in a streaming communication scenario, so that
+            the decompressor can get all input data available so far.  When using this
+            with a ZlibCodec, <c>AvailableBytesIn</c> will be zero after the call if
+            enough output space has been provided before the call.  Flushing will
+            degrade compression and so it should be used only when necessary.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.FlushType.Full">
+            <summary>
+            Use this during compression to specify that all output should be flushed, as
+            with <c>FlushType.Sync</c>, but also, the compression state should be reset
+            so that decompression can restart from this point if previous compressed
+            data has been damaged or if random access is desired.  Using
+            <c>FlushType.Full</c> too often can significantly degrade the compression.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.FlushType.Finish">
+            <summary>Signals the end of the compression/decompression stream.</summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.GZipStream.Dispose(System.Boolean)">
+            <summary>
+            Dispose the stream.
+            </summary>
+            <remarks>
+            This may or may not result in a <c>Close()</c> call on the captive stream.
+            See the doc on constructors that take a <c>leaveOpen</c> parameter for more information.
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.GZipStream.Flush">
+            <summary>
+            Flush the stream.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.GZipStream.Read(System.Byte[],System.Int32,System.Int32)">
+             <summary>
+               Read and decompress data from the source stream.
+             </summary>
+            
+             <remarks>
+               With a <c>GZipStream</c>, decompression is done through reading.
+             </remarks>
+            
+             <example>
+             <code>
+             byte[] working = new byte[WORKING_BUFFER_SIZE];
+             using (System.IO.Stream input = System.IO.File.OpenRead(_CompressedFile))
+             {
+                 using (Stream decompressor= new Ionic.Zlib.GZipStream(input, CompressionMode.Decompress, true))
+                 {
+                     using (var output = System.IO.File.Create(_DecompressedFile))
+                     {
+                         int n;
+                         while ((n= decompressor.Read(working, 0, working.Length)) !=0)
+                         {
+                             output.Write(working, 0, n);
+                         }
+                     }
+                 }
+             }
+             </code>
+             </example>
+             <param name="buffer">The buffer into which the decompressed data should be placed.</param>
+             <param name="offset">the offset within that data array to put the first byte read.</param>
+             <param name="count">the number of bytes to read.</param>
+             <returns>the number of bytes actually read</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.GZipStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+              Calling this method always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+            <param name="offset">irrelevant; it will always throw!</param>
+            <param name="origin">irrelevant; it will always throw!</param>
+            <returns>irrelevant!</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.GZipStream.SetLength(System.Int64)">
+            <summary>
+              Calling this method always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+            <param name="value">irrelevant; this method will always throw!</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.GZipStream.Write(System.Byte[],System.Int32,System.Int32)">
+             <summary>
+               Write data to the stream.
+             </summary>
+            
+             <remarks>
+             <para>
+               If you wish to use the <c>GZipStream</c> to compress data while writing,
+               you can create a <c>GZipStream</c> with <c>CompressionMode.Compress</c>, and a
+               writable output stream.  Then call <c>Write()</c> on that <c>GZipStream</c>,
+               providing uncompressed data as input.  The data sent to the output stream
+               will be the compressed form of the data written.
+             </para>
+            
+             <para>
+               A <c>GZipStream</c> can be used for <c>Read()</c> or <c>Write()</c>, but not
+               both. Writing implies compression.  Reading implies decompression.
+             </para>
+            
+             </remarks>
+             <param name="buffer">The buffer holding data to write to the stream.</param>
+             <param name="offset">the offset within that data array to find the first byte to write.</param>
+             <param name="count">the number of bytes to write.</param>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.GZipStream.CanRead">
+            <summary>
+            Indicates whether the stream can be read.
+            </summary>
+            <remarks>
+            The return value depends on whether the captive stream supports reading.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.GZipStream.CanSeek">
+            <summary>
+            Indicates whether the stream supports Seek operations.
+            </summary>
+            <remarks>
+            Always returns false.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.GZipStream.CanWrite">
+            <summary>
+            Indicates whether the stream can be written.
+            </summary>
+            <remarks>
+            The return value depends on whether the captive stream supports writing.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.GZipStream.Length">
+            <summary>
+            Reading this property always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.GZipStream.Position">
+             <summary>
+               The position of the stream pointer.
+             </summary>
+            
+             <remarks>
+               Setting this property always throws a <see cref="T:System.NotImplementedException"/>. Reading will return the total bytes
+               written out, if used in writing, or the total bytes read in, if used in
+               reading.  The count may refer to compressed bytes or uncompressed bytes,
+               depending on how you've used the stream.
+             </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.H.Pointer.#ctor(System.Byte[])">
+            <summary> Initialize the object with the array (may be null)</summary>
+            <param name="mem">the byte array
+            </param>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.Allocator">
+            Allocate a single, large array and then provide sections of this array to callers.  Callers are provided with
+            instances of <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/> (which simply contain a single address value, representing a location
+            in the large array).  Callers can then cast <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/> to one of the following structures (all
+            of which also simply contain a single address value):
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.#cctor">
+            <summary>
+            Initializes static read-only arrays used by the <see cref="T:SharpCompress.Compressor.PPMd.I1.Allocator"/>.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.Initialize">
+            <summary>
+            Initialize or reset the memory allocator (so that the single, large array can be re-used without destroying
+            and re-creating it).
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.Start(System.Int32)">
+            <summary>
+            Start the allocator (create a single, large array of bytes).
+            </summary>
+            <remarks>
+            Note that .NET will create that array on the large object heap (because it is so large).
+            </remarks>
+            <param name="allocatorSize"></param>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.Stop">
+            <summary>
+            Stop the allocator (free the single, large array of bytes).  This can safely be called multiple times (without
+            intervening calls to <see cref="M:SharpCompress.Compressor.PPMd.I1.Allocator.Start(System.Int32)"/>).
+            </summary>
+            <remarks>
+            Because the array is on the large object heap it may not be freed immediately.
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.GetMemoryUsed">
+            <summary>
+            Determine how much memory (from the single, large array) is currenly in use.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.AllocateUnits(System.UInt32)">
+            <summary>
+            Allocate a given number of units from the single, large array.  Each unit is <see cref="F:SharpCompress.Compressor.PPMd.I1.Allocator.UnitSize"/> bytes
+            in size.
+            </summary>
+            <param name="unitCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.AllocateContext">
+            <summary>
+            Allocate enough space for a PpmContext instance in the single, large array.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.ExpandUnits(SharpCompress.Compressor.PPMd.I1.Pointer,System.UInt32)">
+            <summary>
+            Increase the size of an existing allocation (represented by a <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/>).
+            </summary>
+            <param name="oldPointer"></param>
+            <param name="oldUnitCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.ShrinkUnits(SharpCompress.Compressor.PPMd.I1.Pointer,System.UInt32,System.UInt32)">
+            <summary>
+            Decrease the size of an existing allocation (represented by a <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/>).
+            </summary>
+            <param name="oldPointer"></param>
+            <param name="oldUnitCount"></param>
+            <param name="newUnitCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.FreeUnits(SharpCompress.Compressor.PPMd.I1.Pointer,System.UInt32)">
+            <summary>
+            Free previously allocated space (the location and amount of space to free must be specified by using
+            a <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/> to indicate the location and a number of units to indicate the amount).
+            </summary>
+            <param name="pointer"></param>
+            <param name="unitCount"></param>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Allocator.ExpandText">
+            <summary>
+            Expand the space allocated (in the single, large array) for the bytes of the data (ie. the "text") that is
+            being encoded or decoded.
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.Coder">
+            <summary>
+            A simple range coder.
+            </summary>
+            <remarks>
+            Note that in most cases fields are used rather than properties for performance reasons (for example,
+            <see cref="F:SharpCompress.Compressor.PPMd.I1.Coder.Scale"/> is a field rather than a property).
+            </remarks>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.MemoryNode">
+            <summary>
+            A structure containing a single address.  The address represents a location in the <see cref="F:SharpCompress.Compressor.PPMd.I1.MemoryNode.Memory"/>
+            array.  That location in the <see cref="F:SharpCompress.Compressor.PPMd.I1.MemoryNode.Memory"/> array contains information itself describing a section
+            of the <see cref="F:SharpCompress.Compressor.PPMd.I1.MemoryNode.Memory"/> array (ie. a block of memory).
+            </summary>
+            <remarks>
+            <para>
+            This must be a structure rather than a class because several places in the associated code assume that
+            <see cref="T:SharpCompress.Compressor.PPMd.I1.MemoryNode"/> is a value type (meaning that assignment creates a completely new copy of
+            the instance rather than just copying a reference to the same instance).
+            </para>
+            <para>
+            MemoryNode
+                4 Stamp
+                4 Next
+                4 UnitCount
+            </para>
+            <para>
+            Note that <see cref="F:SharpCompress.Compressor.PPMd.I1.MemoryNode.Address"/> is a field rather than a property for performance reasons.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.#ctor(System.UInt32,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpCompress.Compressor.PPMd.I1.MemoryNode"/> structure.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.Link(SharpCompress.Compressor.PPMd.I1.MemoryNode)">
+            <summary>
+            Link in the provided memory node.
+            </summary>
+            <param name="memoryNode"></param>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.Unlink">
+            <summary>
+            Unlink this memory node.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.Insert(SharpCompress.Compressor.PPMd.I1.MemoryNode,System.UInt32)">
+            <summary>
+            Insert the memory node into the linked list.
+            </summary>
+            <param name="memoryNode"></param>
+            <param name="unitCount"></param>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.Remove">
+            <summary>
+            Remove this memory node from the linked list.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.op_Implicit(SharpCompress.Compressor.PPMd.I1.Pointer)~SharpCompress.Compressor.PPMd.I1.MemoryNode">
+            <summary>
+            Allow a pointer to be implicitly converted to a memory node.
+            </summary>
+            <param name="pointer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.op_Addition(SharpCompress.Compressor.PPMd.I1.MemoryNode,System.Int32)">
+            <summary>
+            Allow pointer-like addition on a memory node.
+            </summary>
+            <param name="memoryNode"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.op_Addition(SharpCompress.Compressor.PPMd.I1.MemoryNode,System.UInt32)">
+            <summary>
+            Allow pointer-like addition on a memory node.
+            </summary>
+            <param name="memoryNode"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.op_Subtraction(SharpCompress.Compressor.PPMd.I1.MemoryNode,System.Int32)">
+            <summary>
+            Allow pointer-like subtraction on a memory node.
+            </summary>
+            <param name="memoryNode"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.op_Subtraction(SharpCompress.Compressor.PPMd.I1.MemoryNode,System.UInt32)">
+            <summary>
+            Allow pointer-like subtraction on a memory node.
+            </summary>
+            <param name="memoryNode"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.op_Equality(SharpCompress.Compressor.PPMd.I1.MemoryNode,SharpCompress.Compressor.PPMd.I1.MemoryNode)">
+            <summary>
+            Compare two memory nodes.
+            </summary>
+            <param name="memoryNode1"></param>
+            <param name="memoryNode2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.op_Inequality(SharpCompress.Compressor.PPMd.I1.MemoryNode,SharpCompress.Compressor.PPMd.I1.MemoryNode)">
+            <summary>
+            Compare two memory nodes.
+            </summary>
+            <param name="memoryNode1"></param>
+            <param name="memoryNode2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
+            <param name="obj">Another object to compare to.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.MemoryNode.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.MemoryNode.Stamp">
+            <summary>
+            Gets or sets the stamp.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.MemoryNode.Next">
+            <summary>
+            Gets or sets the next memory node.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.MemoryNode.UnitCount">
+            <summary>
+            Gets or sets the unit count.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.MemoryNode.Available">
+            <summary>
+            Gets whether there is a next memory node available.
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.Model">
+            <summary>
+            The model.
+            </summary>
+            <summary>
+            The PPM context structure.  This is tightly coupled with <see cref="T:SharpCompress.Compressor.PPMd.I1.Model"/>.
+            </summary>
+            <remarks>
+            <para>
+            This must be a structure rather than a class because several places in the associated code assume that
+            <see cref="T:SharpCompress.Compressor.PPMd.I1.Model.PpmContext"/> is a value type (meaning that assignment creates a completely new copy of
+            the instance rather than just copying a reference to the same instance).
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.Encode(System.IO.Stream,System.IO.Stream,SharpCompress.Compressor.PPMd.PpmdProperties)">
+            <summary>
+            Encode (ie. compress) a given source stream, writing the encoded result to the target stream.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.Decode(System.IO.Stream,System.IO.Stream,SharpCompress.Compressor.PPMd.PpmdProperties)">
+            <summary>
+            Dencode (ie. decompress) a given source stream, writing the decoded result to the target stream.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.StartModel(System.Int32,SharpCompress.Compressor.PPMd.I1.ModelRestorationMethod)">
+            <summary>
+            Initialise the model (unless the model order is set to 1 in which case the model should be cleared so that
+            the statistics are carried over, allowing "solid" mode compression).
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.Model.PpmContext">
+            <summary>
+            The structure which represents the current PPM context.  This is 12 bytes in size.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.#ctor(System.UInt32,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpCompress.Compressor.PPMd.I1.Model.PpmContext"/> structure.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.op_Implicit(SharpCompress.Compressor.PPMd.I1.Pointer)~SharpCompress.Compressor.PPMd.I1.Model.PpmContext">
+            <summary>
+            Allow a pointer to be implicitly converted to a PPM context.
+            </summary>
+            <param name="pointer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.op_Addition(SharpCompress.Compressor.PPMd.I1.Model.PpmContext,System.Int32)">
+            <summary>
+            Allow pointer-like addition on a PPM context.
+            </summary>
+            <param name="context"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.op_Subtraction(SharpCompress.Compressor.PPMd.I1.Model.PpmContext,System.Int32)">
+            <summary>
+            Allow pointer-like subtraction on a PPM context.
+            </summary>
+            <param name="context"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.op_LessThanOrEqual(SharpCompress.Compressor.PPMd.I1.Model.PpmContext,SharpCompress.Compressor.PPMd.I1.Model.PpmContext)">
+            <summary>
+            Compare two PPM contexts.
+            </summary>
+            <param name="context1"></param>
+            <param name="context2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.op_GreaterThanOrEqual(SharpCompress.Compressor.PPMd.I1.Model.PpmContext,SharpCompress.Compressor.PPMd.I1.Model.PpmContext)">
+            <summary>
+            Compare two PPM contexts.
+            </summary>
+            <param name="context1"></param>
+            <param name="context2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.op_Equality(SharpCompress.Compressor.PPMd.I1.Model.PpmContext,SharpCompress.Compressor.PPMd.I1.Model.PpmContext)">
+            <summary>
+            Compare two PPM contexts.
+            </summary>
+            <param name="context1"></param>
+            <param name="context2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.op_Inequality(SharpCompress.Compressor.PPMd.I1.Model.PpmContext,SharpCompress.Compressor.PPMd.I1.Model.PpmContext)">
+            <summary>
+            Compare two PPM contexts.
+            </summary>
+            <param name="context1"></param>
+            <param name="context2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
+            <param name="obj">Another object to compare to.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.NumberStatistics">
+            <summary>
+            Gets or sets the number statistics.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.Flags">
+            <summary>
+            Gets or sets the flags.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.SummaryFrequency">
+            <summary>
+            Gets or sets the summary frequency.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.Statistics">
+            <summary>
+            Gets or sets the statistics.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.Suffix">
+            <summary>
+            Gets or sets the suffix.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.FirstState">
+            <summary>
+            The first PPM state associated with the PPM context.
+            </summary>
+            <remarks>
+            <para>
+            The first PPM state overlaps this PPM context instance (the context.SummaryFrequency and context.Statistics members
+            of PpmContext use 6 bytes and so can therefore fit into the space used by the Symbol, Frequency and
+            Successor members of PpmState, since they also add up to 6 bytes).
+            </para>
+            <para>
+            PpmContext (context.SummaryFrequency and context.Statistics use 6 bytes)
+                1 context.NumberStatistics
+                1 context.Flags
+                2 context.SummaryFrequency
+                4 context.Statistics (pointer to PpmState)
+                4 context.Suffix (pointer to PpmContext)
+            </para>
+            <para>
+            PpmState (total of 6 bytes)
+                1 Symbol
+                1 Frequency
+                4 Successor (pointer to PpmContext)
+            </para>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.FirstStateSymbol">
+            <summary>
+            Gets or sets the symbol of the first PPM state.  This is provided for convenience.  The same
+            information can be obtained using the Symbol property on the PPM state provided by the
+            <see cref="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.FirstState"/> property.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.FirstStateFrequency">
+             <summary>
+             Gets or sets the frequency of the first PPM state.  This is provided for convenience.  The same
+             information can be obtained using the Frequency property on the PPM state provided by the
+            context.FirstState property.
+             </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Model.PpmContext.FirstStateSuccessor">
+            <summary>
+            Gets or sets the successor of the first PPM state.  This is provided for convenience.  The same
+            information can be obtained using the Successor property on the PPM state provided by the
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.ModelRestorationMethod">
+            <summary>
+            The method used to adjust the model when the memory limit is reached.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.PPMd.I1.ModelRestorationMethod.Restart">
+            <summary>
+            Restart the model from scratch (this is the default).
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.PPMd.I1.ModelRestorationMethod.CutOff">
+            <summary>
+            Cut off the model (nearly twice as slow).
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.PPMd.I1.ModelRestorationMethod.Freeze">
+            <summary>
+            Freeze the context tree (in some cases may result in poor compression).
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.Pointer">
+            <summary>
+            A structure containing a single address representing a position in the <see cref="F:SharpCompress.Compressor.PPMd.I1.Pointer.Memory"/> array.  This
+            is intended to mimic the behaviour of a pointer in C/C++.
+            </summary>
+            <remarks>
+            <para>
+            This must be a structure rather than a class because several places in the associated code assume that
+            <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/> is a value type (meaning that assignment creates a completely new copy of the
+            instance rather than just copying a reference to the same instance).
+            </para>
+            <para>
+            Note that <see cref="F:SharpCompress.Compressor.PPMd.I1.Pointer.Address"/> is a field rather than a property for performance reasons.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.#ctor(System.UInt32,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/> structure.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Implicit(SharpCompress.Compressor.PPMd.I1.MemoryNode)~SharpCompress.Compressor.PPMd.I1.Pointer">
+            <summary>
+            Allow a <see cref="T:SharpCompress.Compressor.PPMd.I1.MemoryNode"/> to be implicitly converted to a <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/>.
+            </summary>
+            <param name="memoryNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Implicit(SharpCompress.Compressor.PPMd.I1.Model.PpmContext)~SharpCompress.Compressor.PPMd.I1.Pointer">
+            <summary>
+            Allow a <see cref="T:SharpCompress.Compressor.PPMd.I1.Model.PpmContext"/> to be implicitly converted to a <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/>.
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Implicit(SharpCompress.Compressor.PPMd.I1.PpmState)~SharpCompress.Compressor.PPMd.I1.Pointer">
+            <summary>
+            Allow a <see cref="T:SharpCompress.Compressor.PPMd.I1.PpmState"/> to be implicitly converted to a <see cref="T:SharpCompress.Compressor.PPMd.I1.Pointer"/>.
+            </summary>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Addition(SharpCompress.Compressor.PPMd.I1.Pointer,System.Int32)">
+            <summary>
+            Increase the address of a pointer by the given number of bytes.
+            </summary>
+            <param name="pointer"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Addition(SharpCompress.Compressor.PPMd.I1.Pointer,System.UInt32)">
+            <summary>
+            Increase the address of a pointer by the given number of bytes.
+            </summary>
+            <param name="pointer"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Increment(SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Increment the address of a pointer.
+            </summary>
+            <param name="pointer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Subtraction(SharpCompress.Compressor.PPMd.I1.Pointer,System.Int32)">
+            <summary>
+            Decrease the address of a pointer by the given number of bytes.
+            </summary>
+            <param name="pointer"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Subtraction(SharpCompress.Compressor.PPMd.I1.Pointer,System.UInt32)">
+            <summary>
+            Decrease the address of a pointer by the given number of bytes.
+            </summary>
+            <param name="pointer"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Decrement(SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Decrement the address of a pointer.
+            </summary>
+            <param name="pointer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Subtraction(SharpCompress.Compressor.PPMd.I1.Pointer,SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Subtract two pointers.
+            </summary>
+            <param name="pointer1"></param>
+            <param name="pointer2"></param>
+            <returns>The number of bytes between the two pointers.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_LessThan(SharpCompress.Compressor.PPMd.I1.Pointer,SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Compare pointers.
+            </summary>
+            <param name="pointer1"></param>
+            <param name="pointer2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_LessThanOrEqual(SharpCompress.Compressor.PPMd.I1.Pointer,SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Compare two pointers.
+            </summary>
+            <param name="pointer1"></param>
+            <param name="pointer2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_GreaterThan(SharpCompress.Compressor.PPMd.I1.Pointer,SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Compare two pointers.
+            </summary>
+            <param name="pointer1"></param>
+            <param name="pointer2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_GreaterThanOrEqual(SharpCompress.Compressor.PPMd.I1.Pointer,SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Compare two pointers.
+            </summary>
+            <param name="pointer1"></param>
+            <param name="pointer2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Equality(SharpCompress.Compressor.PPMd.I1.Pointer,SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Compare two pointers.
+            </summary>
+            <param name="pointer1"></param>
+            <param name="pointer2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.op_Inequality(SharpCompress.Compressor.PPMd.I1.Pointer,SharpCompress.Compressor.PPMd.I1.Pointer)">
+            <summary>
+            Compare two pointers.
+            </summary>
+            <param name="pointer1"></param>
+            <param name="pointer2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
+            <param name="obj">Another object to compare to.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.Pointer.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.Pointer.Item(System.Int32)">
+            <summary>
+            Gets or sets the byte at the given <paramref name="offset"/>.
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.PpmState">
+            <summary>
+            PPM state.
+            </summary>
+            <remarks>
+            <para>
+            This must be a structure rather than a class because several places in the associated code assume that
+            <see cref="T:SharpCompress.Compressor.PPMd.I1.PpmState"/> is a value type (meaning that assignment creates a completely new copy of the
+            instance rather than just copying a reference to the same instance).
+            </para>
+            <para>
+            Note that <see cref="F:SharpCompress.Compressor.PPMd.I1.PpmState.Address"/> is a field rather than a property for performance reasons.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.#ctor(System.UInt32,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpCompress.Compressor.PPMd.I1.PpmState"/> structure.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_Implicit(SharpCompress.Compressor.PPMd.I1.Pointer)~SharpCompress.Compressor.PPMd.I1.PpmState">
+            <summary>
+            Allow a pointer to be implicitly converted to a PPM state.
+            </summary>
+            <param name="pointer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_Addition(SharpCompress.Compressor.PPMd.I1.PpmState,System.Int32)">
+            <summary>
+            Allow pointer-like addition on a PPM state.
+            </summary>
+            <param name="state"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_Increment(SharpCompress.Compressor.PPMd.I1.PpmState)">
+            <summary>
+            Allow pointer-like incrementing on a PPM state.
+            </summary>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_Subtraction(SharpCompress.Compressor.PPMd.I1.PpmState,System.Int32)">
+            <summary>
+            Allow pointer-like subtraction on a PPM state.
+            </summary>
+            <param name="state"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_Decrement(SharpCompress.Compressor.PPMd.I1.PpmState)">
+            <summary>
+            Allow pointer-like decrementing on a PPM state.
+            </summary>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_LessThanOrEqual(SharpCompress.Compressor.PPMd.I1.PpmState,SharpCompress.Compressor.PPMd.I1.PpmState)">
+            <summary>
+            Compare two PPM states.
+            </summary>
+            <param name="state1"></param>
+            <param name="state2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_GreaterThanOrEqual(SharpCompress.Compressor.PPMd.I1.PpmState,SharpCompress.Compressor.PPMd.I1.PpmState)">
+            <summary>
+            Compare two PPM states.
+            </summary>
+            <param name="state1"></param>
+            <param name="state2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_Equality(SharpCompress.Compressor.PPMd.I1.PpmState,SharpCompress.Compressor.PPMd.I1.PpmState)">
+            <summary>
+            Compare two PPM states.
+            </summary>
+            <param name="state1"></param>
+            <param name="state2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.op_Inequality(SharpCompress.Compressor.PPMd.I1.PpmState,SharpCompress.Compressor.PPMd.I1.PpmState)">
+            <summary>
+            Compare two PPM states.
+            </summary>
+            <param name="state1"></param>
+            <param name="state2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.Equals(System.Object)">
+            <summary>
+            Indicates whether this instance and a specified object are equal.
+            </summary>
+            <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
+            <param name="obj">Another object to compare to.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.PPMd.I1.PpmState.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.PpmState.Symbol">
+            <summary>
+            Gets or sets the symbol.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.PpmState.Frequency">
+            <summary>
+            Gets or sets the frequency.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.PpmState.Successor">
+            <summary>
+            Gets or sets the successor.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.PPMd.I1.PpmState.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:SharpCompress.Compressor.PPMd.I1.PpmState"/> at the <paramref name="offset"/> relative to this
+            <see cref="T:SharpCompress.Compressor.PPMd.I1.PpmState"/>.
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpCompress.Compressor.PPMd.I1.See2Context">
+            <summary>
+            SEE2 (secondary escape estimation) contexts for PPM contexts with masked symbols.
+            </summary>
+            <remarks>
+            <para>
+            This must be a class rather than a structure because MakeEscapeFrequency returns a See2Context
+            instance from the see2Contexts array.  The caller (for example, EncodeSymbol2) then updates the
+            returned See2Context instance and expects the updates to be reflected in the see2Contexts array.
+            This would not happen if this were a structure.
+            </para>
+            <remarks>
+            Note that in most cases fields are used rather than properties for performance reasons (for example,
+            <see cref="F:SharpCompress.Compressor.PPMd.I1.See2Context.Shift"/> is a field rather than a property).
+            </remarks>
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Common.EntryStream.SkipEntry">
+            <summary>
+            When reading a stream from OpenEntryStream, the stream must be completed so use this to finish reading the entire entry.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Reader.GZip.GZipReader.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Opens a GZipReader for Non-seeking usage with a single volume
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Reader.ReaderFactory.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Opens a Reader for Non-seeking usage
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.CRC32">
+            <summary>
+            Calculates a 32bit Cyclic Redundancy Checksum (CRC) using the same polynomial
+            used by Zip. This type is used internally by DotNetZip; it is generally not used
+            directly by applications wishing to create, read, or manipulate zip archive
+            files.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.CRC32.GetCrc32(System.IO.Stream)">
+            <summary>
+            Returns the CRC32 for the specified stream.
+            </summary>
+            <param name="input">The stream over which to calculate the CRC32</param>
+            <returns>the CRC32 calculation</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.CRC32.GetCrc32AndCopy(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Returns the CRC32 for the specified stream, and writes the input into the
+            output stream.
+            </summary>
+            <param name="input">The stream over which to calculate the CRC32</param>
+            <param name="output">The stream into which to deflate the input</param>
+            <returns>the CRC32 calculation</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.CRC32.ComputeCrc32(System.Int32,System.Byte)">
+            <summary>
+            Get the CRC32 for the given (word,byte) combo.  This is a computation
+            defined by PKzip.
+            </summary>
+            <param name="W">The word to start with.</param>
+            <param name="B">The byte to combine it with.</param>
+            <returns>The CRC-ized result.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.CRC32.SlurpBlock(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Update the value for the running CRC32 using the given block of bytes.
+            This is useful when using the CRC32() class in a Stream.
+            </summary>
+            <param name="block">block of bytes to slurp</param>
+            <param name="offset">starting point in the block</param>
+            <param name="count">how many bytes within the block to slurp</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.CRC32.Combine(System.Int32,System.Int32)">
+            <summary>
+            Combines the given CRC32 value with the current running total.
+            </summary>
+            <remarks>
+            This is useful when using a divide-and-conquer approach to calculating a CRC.
+            Multiple threads can each calculate a CRC32 on a segment of the data, and then
+            combine the individual CRC32 values at the end.
+            </remarks>
+            <param name="crc">the crc value to be combined with this one</param>
+            <param name="length">the length of data the CRC value was calculated on</param>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.CRC32.TotalBytesRead">
+            <summary>
+            indicates the total number of bytes read on the CRC stream.
+            This is used when writing the ZipDirEntry when compressing files.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.CRC32.Crc32Result">
+            <summary>
+            Indicates the current CRC for all blocks slurped in.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.DeflateManager.Tree.DistanceCode(System.Int32)">
+            <summary>
+            Map from a distance to a distance code.
+            </summary>
+            <remarks> 
+            No side effects. _dist_code[256] and _dist_code[257] are never used.
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.DeflateStream.Dispose(System.Boolean)">
+            <summary>
+            Dispose the stream.
+            </summary>
+            <remarks>
+            This may or may not result in a <c>Close()</c> call on the captive stream.
+            See the constructors that have a <c>leaveOpen</c> parameter for more information.
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.DeflateStream.Flush">
+            <summary>
+            Flush the stream.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.DeflateStream.Read(System.Byte[],System.Int32,System.Int32)">
+             <summary>
+             Read data from the stream.
+             </summary>
+             <remarks>
+            
+             <para>
+               If you wish to use the <c>DeflateStream</c> to compress data while
+               reading, you can create a <c>DeflateStream</c> with
+               <c>CompressionMode.Compress</c>, providing an uncompressed data stream.
+               Then call Read() on that <c>DeflateStream</c>, and the data read will be
+               compressed as you read.  If you wish to use the <c>DeflateStream</c> to
+               decompress data while reading, you can create a <c>DeflateStream</c> with
+               <c>CompressionMode.Decompress</c>, providing a readable compressed data
+               stream.  Then call Read() on that <c>DeflateStream</c>, and the data read
+               will be decompressed as you read.
+             </para>
+            
+             <para>
+               A <c>DeflateStream</c> can be used for <c>Read()</c> or <c>Write()</c>, but not both.
+             </para>
+            
+             </remarks>
+             <param name="buffer">The buffer into which the read data should be placed.</param>
+             <param name="offset">the offset within that data array to put the first byte read.</param>
+             <param name="count">the number of bytes to read.</param>
+             <returns>the number of bytes actually read</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.DeflateStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            Calling this method always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+            <param name="offset">this is irrelevant, since it will always throw!</param>
+            <param name="origin">this is irrelevant, since it will always throw!</param>
+            <returns>irrelevant!</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.DeflateStream.SetLength(System.Int64)">
+            <summary>
+            Calling this method always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+            <param name="value">this is irrelevant, since it will always throw!</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.DeflateStream.Write(System.Byte[],System.Int32,System.Int32)">
+             <summary>
+               Write data to the stream.
+             </summary>
+             <remarks>
+            
+             <para>
+               If you wish to use the <c>DeflateStream</c> to compress data while
+               writing, you can create a <c>DeflateStream</c> with
+               <c>CompressionMode.Compress</c>, and a writable output stream.  Then call
+               <c>Write()</c> on that <c>DeflateStream</c>, providing uncompressed data
+               as input.  The data sent to the output stream will be the compressed form
+               of the data written.  If you wish to use the <c>DeflateStream</c> to
+               decompress data while writing, you can create a <c>DeflateStream</c> with
+               <c>CompressionMode.Decompress</c>, and a writable output stream.  Then
+               call <c>Write()</c> on that stream, providing previously compressed
+               data. The data sent to the output stream will be the decompressed form of
+               the data written.
+             </para>
+            
+             <para>
+               A <c>DeflateStream</c> can be used for <c>Read()</c> or <c>Write()</c>,
+               but not both.
+             </para>
+            
+             </remarks>
+            
+             <param name="buffer">The buffer holding data to write to the stream.</param>
+             <param name="offset">the offset within that data array to find the first byte to write.</param>
+             <param name="count">the number of bytes to write.</param>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.FlushMode">
+            <summary>
+            This property sets the flush behavior on the stream.
+            </summary>
+            <remarks> See the ZLIB documentation for the meaning of the flush behavior.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.BufferSize">
+             <summary>
+               The size of the working buffer for the compression codec.
+             </summary>
+            
+             <remarks>
+             <para>
+               The working buffer is used for all stream operations.  The default size is
+               1024 bytes.  The minimum size is 128 bytes. You may get better performance
+               with a larger buffer.  Then again, you might not.  You would have to test
+               it.
+             </para>
+            
+             <para>
+               Set this before the first call to <c>Read()</c> or <c>Write()</c> on the
+               stream. If you try to set it afterwards, it will throw.
+             </para>
+             </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.Strategy">
+             <summary>
+               The ZLIB strategy to be used during compression.
+             </summary>
+            
+             <remarks>
+               By tweaking this parameter, you may be able to optimize the compression for
+               data with particular characteristics.
+             </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.TotalIn">
+            <summary> Returns the total number of bytes input so far.</summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.TotalOut">
+            <summary> Returns the total number of bytes output so far.</summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.CanRead">
+            <summary>
+            Indicates whether the stream can be read.
+            </summary>
+            <remarks>
+            The return value depends on whether the captive stream supports reading.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.CanSeek">
+            <summary>
+            Indicates whether the stream supports Seek operations.
+            </summary>
+            <remarks>
+            Always returns false.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.CanWrite">
+            <summary>
+            Indicates whether the stream can be written.
+            </summary>
+            <remarks>
+            The return value depends on whether the captive stream supports writing.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.Length">
+            <summary>
+            Reading this property always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.DeflateStream.Position">
+             <summary>
+             The position of the stream pointer.
+             </summary>
+            
+             <remarks>
+               Setting this property always throws a <see cref="T:System.NotImplementedException"/>. Reading will return the total bytes
+               written out, if used in writing, or the total bytes read in, if used in
+               reading.  The count may refer to compressed bytes or uncompressed bytes,
+               depending on how you've used the stream.
+             </remarks>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream">
+             <summary>
+               A class for compressing and decompressing streams using the
+               Deflate algorithm with multiple threads.
+             </summary>
+            
+             <remarks>
+             <para>
+               This class is for compression only, and that can be only
+               through writing.
+             </para>
+            
+             <para>
+               For more information on the Deflate algorithm, see IETF RFC 1951, "DEFLATE
+               Compressed Data Format Specification version 1.3."
+             </para>
+            
+             <para>
+               This class is similar to <see cref="T:SharpCompress.Compressor.Deflate.DeflateStream"/>, except
+               that this implementation uses an approach that employs multiple worker
+               threads to perform the DEFLATE.  On a multi-cpu or multi-core computer,
+               the performance of this class can be significantly higher than the
+               single-threaded DeflateStream, particularly for larger streams.  How
+               large?  Anything over 10mb is a good candidate for parallel compression.
+             </para>
+            
+             <para>
+               The tradeoff is that this class uses more memory and more CPU than the
+               vanilla DeflateStream, and also is less efficient as a compressor. For
+               large files the size of the compressed data stream can be less than 1%
+               larger than the size of a compressed data stream from the vanialla
+               DeflateStream.  For smaller files the difference can be larger.  The
+               difference will also be larger if you set the BufferSize to be lower
+               than the default value.  Your mileage may vary. Finally, for small
+               files, the ParallelDeflateOutputStream can be much slower than the vanilla
+               DeflateStream, because of the overhead of using the thread pool.
+             </para>
+            
+             </remarks>
+             <seealso cref="T:SharpCompress.Compressor.Deflate.DeflateStream"/>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream)">
+             <summary>
+             Create a ParallelDeflateOutputStream.
+             </summary>
+             <remarks>
+            
+             <para>
+               This stream compresses data written into it via the DEFLATE
+               algorithm (see RFC 1951), and writes out the compressed byte stream.
+             </para>
+            
+             <para>
+               The instance will use the default compression level, the default
+               buffer sizes and the default number of threads and buffers per
+               thread.
+             </para>
+            
+             <para>
+               This class is similar to <see cref="T:SharpCompress.Compressor.Deflate.DeflateStream"/>,
+               except that this implementation uses an approach that employs
+               multiple worker threads to perform the DEFLATE.  On a multi-cpu or
+               multi-core computer, the performance of this class can be
+               significantly higher than the single-threaded DeflateStream,
+               particularly for larger streams.  How large?  Anything over 10mb is
+               a good candidate for parallel compression.
+             </para>
+            
+             </remarks>
+            
+             <example>
+            
+             This example shows how to use a ParallelDeflateOutputStream to compress
+             data.  It reads a file, compresses it, and writes the compressed data to
+             a second, output file.
+            
+             <code>
+             byte[] buffer = new byte[WORKING_BUFFER_SIZE];
+             int n= -1;
+             String outputFile = fileToCompress + ".compressed";
+             using (System.IO.Stream input = System.IO.File.OpenRead(fileToCompress))
+             {
+                 using (var raw = System.IO.File.Create(outputFile))
+                 {
+                     using (Stream compressor = new ParallelDeflateOutputStream(raw))
+                     {
+                         while ((n= input.Read(buffer, 0, buffer.Length)) != 0)
+                         {
+                             compressor.Write(buffer, 0, n);
+                         }
+                     }
+                 }
+             }
+             </code>
+             <code lang="VB">
+             Dim buffer As Byte() = New Byte(4096) {}
+             Dim n As Integer = -1
+             Dim outputFile As String = (fileToCompress &amp; ".compressed")
+             Using input As Stream = File.OpenRead(fileToCompress)
+                 Using raw As FileStream = File.Create(outputFile)
+                     Using compressor As Stream = New ParallelDeflateOutputStream(raw)
+                         Do While (n &lt;&gt; 0)
+                             If (n &gt; 0) Then
+                                 compressor.Write(buffer, 0, n)
+                             End If
+                             n = input.Read(buffer, 0, buffer.Length)
+                         Loop
+                     End Using
+                 End Using
+             End Using
+             </code>
+             </example>
+             <param name="stream">The stream to which compressed data will be written.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream,SharpCompress.Compressor.Deflate.CompressionLevel)">
+            <summary>
+              Create a ParallelDeflateOutputStream using the specified CompressionLevel.
+            </summary>
+            <remarks>
+              See the <see cref="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream)"/>
+              constructor for example code.
+            </remarks>
+            <param name="stream">The stream to which compressed data will be written.</param>
+            <param name="level">A tuning knob to trade speed for effectiveness.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream,System.Boolean)">
+            <summary>
+            Create a ParallelDeflateOutputStream and specify whether to leave the captive stream open
+            when the ParallelDeflateOutputStream is closed.
+            </summary>
+            <remarks>
+              See the <see cref="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream)"/>
+              constructor for example code.
+            </remarks>
+            <param name="stream">The stream to which compressed data will be written.</param>
+            <param name="leaveOpen">
+               true if the application would like the stream to remain open after inflation/deflation.
+            </param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream,SharpCompress.Compressor.Deflate.CompressionLevel,System.Boolean)">
+            <summary>
+            Create a ParallelDeflateOutputStream and specify whether to leave the captive stream open
+            when the ParallelDeflateOutputStream is closed.
+            </summary>
+            <remarks>
+              See the <see cref="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream)"/>
+              constructor for example code.
+            </remarks>
+            <param name="stream">The stream to which compressed data will be written.</param>
+            <param name="level">A tuning knob to trade speed for effectiveness.</param>
+            <param name="leaveOpen">
+               true if the application would like the stream to remain open after inflation/deflation.
+            </param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream,SharpCompress.Compressor.Deflate.CompressionLevel,SharpCompress.Compressor.Deflate.CompressionStrategy,System.Boolean)">
+            <summary>
+            Create a ParallelDeflateOutputStream using the specified
+            CompressionLevel and CompressionStrategy, and specifying whether to
+            leave the captive stream open when the ParallelDeflateOutputStream is
+            closed.
+            </summary>
+            <remarks>
+              See the <see cref="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.#ctor(System.IO.Stream)"/>
+              constructor for example code.
+            </remarks>
+            <param name="stream">The stream to which compressed data will be written.</param>
+            <param name="level">A tuning knob to trade speed for effectiveness.</param>
+            <param name="strategy">
+              By tweaking this parameter, you may be able to optimize the compression for
+              data with particular characteristics.
+            </param>
+            <param name="leaveOpen">
+               true if the application would like the stream to remain open after inflation/deflation.
+            </param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Write(System.Byte[],System.Int32,System.Int32)">
+             <summary>
+               Write data to the stream.
+             </summary>
+            
+             <remarks>
+            
+             <para>
+               To use the ParallelDeflateOutputStream to compress data, create a
+               ParallelDeflateOutputStream with CompressionMode.Compress, passing a
+               writable output stream.  Then call Write() on that
+               ParallelDeflateOutputStream, providing uncompressed data as input.  The
+               data sent to the output stream will be the compressed form of the data
+               written.
+             </para>
+            
+             <para>
+               To decompress data, use the <see cref="T:SharpCompress.Compressor.Deflate.DeflateStream"/> class.
+             </para>
+            
+             </remarks>
+             <param name="buffer">The buffer holding data to write to the stream.</param>
+             <param name="offset">the offset within that data array to find the first byte to write.</param>
+             <param name="count">the number of bytes to write.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Flush">
+            <summary>
+            Flush the stream.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Dispose(System.Boolean)">
+            <summary>
+            Close the stream.
+            </summary>
+            <remarks>
+            You must call Close on the stream to guarantee that all of the data written in has
+            been compressed, and the compressed data has been written out.
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Reset(System.IO.Stream)">
+             <summary>
+               Resets the stream for use with another stream.
+             </summary>
+             <remarks>
+               Because the ParallelDeflateOutputStream is expensive to create, it
+               has been designed so that it can be recycled and re-used.  You have
+               to call Close() on the stream first, then you can call Reset() on
+               it, to use it again on another stream.
+             </remarks>
+            
+             <example>
+             <code>
+             ParallelDeflateOutputStream deflater = null;
+             foreach (var inputFile in listOfFiles)
+             {
+                 string outputFile = inputFile + ".compressed";
+                 using (System.IO.Stream input = System.IO.File.OpenRead(inputFile))
+                 {
+                     using (var outStream = System.IO.File.Create(outputFile))
+                     {
+                         if (deflater == null)
+                             deflater = new ParallelDeflateOutputStream(outStream,
+                                                                        CompressionLevel.Best,
+                                                                        CompressionStrategy.Default,
+                                                                        true);
+                         deflater.Reset(outStream);
+            
+                         while ((n= input.Read(buffer, 0, buffer.Length)) != 0)
+                         {
+                             deflater.Write(buffer, 0, n);
+                         }
+                     }
+                 }
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            This method always throws a NotImplementedException.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            This method always throws a NotImplementedException.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.SetLength(System.Int64)">
+            <summary>
+            This method always throws a NotImplementedException.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Strategy">
+             <summary>
+               The ZLIB strategy to be used during compression.
+             </summary>
+            
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.BuffersPerCore">
+             <summary>
+             The number of buffers per CPU or CPU core.
+             </summary>
+            
+             <remarks>
+             <para>
+               This property sets the number of memory buffers to create, for every
+               CPU or CPU core in the machine.  The divide-and-conquer approach
+               taken by this class assumes a single thread from the application
+               will call Write().  There will be multiple background threads that
+               then compress (DEFLATE) the data written into the stream, and also a
+               single output thread, also operating in the background, aggregating
+               those results and finally emitting the output.
+             </para>
+            
+             <para>
+               The default value is 4.  Different values may deliver better or
+               worse results, depending on the dynamic performance characteristics
+               of your storage and compute resources.
+             </para>
+            
+             <para>
+               The total amount of storage space allocated for buffering will be
+               (n*M*S*2), where n is the number of CPUs, M is the multiple (this
+               property), S is the size of each buffer (<see cref="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.BufferSize"/>),
+               and there are 2 buffers used by the compressor, one for input and
+               one for output. For example, if your machine has 4 cores, and you
+               set BuffersPerCore to 3, and you retain the default buffer size of
+               128k, then the ParallelDeflateOutputStream will use 3mb of buffer
+               memory in total.
+             </para>
+            
+             <para>
+               The application can set this value at any time, but it is effective
+               only before the first call to Write(), which is when the buffers are
+               allocated.
+             </para>
+             </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.BufferSize">
+             <summary>
+               The size of the buffers used by the compressor threads.
+             </summary>
+             <remarks>
+            
+             <para>
+               The default buffer size is 128k. The application can set this value at any
+               time, but it is effective only before the first Write().
+             </para>
+            
+             <para>
+               Larger buffer sizes implies larger memory consumption but allows
+               more efficient compression. Using smaller buffer sizes consumes less
+               memory but result in less effective compression.  For example, using
+               the default buffer size of 128k, the compression delivered is within
+               1% of the compression delivered by the single-threaded <see cref="T:SharpCompress.Compressor.Deflate.DeflateStream"/>.  On the other hand, using a
+               BufferSize of 8k can result in a compressed data stream that is 5%
+               larger than that delivered by the single-threaded
+               <c>DeflateStream</c>.  Excessively small buffer sizes can also cause
+               the speed of the ParallelDeflateOutputStream to drop, because of
+               larger thread scheduling overhead dealing with many many small
+               buffers.
+             </para>
+            
+             <para>
+               The total amount of storage space allocated for buffering will be
+               (n*M*S*2), where n is the number of CPUs, M is the multiple (<see cref="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.BuffersPerCore"/>), S is the size of each buffer (this
+               property), and there are 2 buffers used by the compressor, one for
+               input and one for output. For example, if your machine has a total
+               of 4 cores, and if you set <see cref="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.BuffersPerCore"/> to 3, and
+               you keep the default buffer size of 128k, then the
+               <c>ParallelDeflateOutputStream</c> will use 3mb of buffer memory in
+               total.
+             </para>
+            
+             </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Crc32">
+            <summary>
+            The CRC32 for the data that was written out, prior to compression.
+            </summary>
+            <remarks>
+            This value is meaningful only after a call to Close().
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.BytesProcessed">
+            <summary>
+            The total number of uncompressed bytes processed by the ParallelDeflateOutputStream.
+            </summary>
+            <remarks>
+            This value is meaningful only after a call to Close().
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.CanSeek">
+            <summary>
+            Indicates whether the stream supports Seek operations.
+            </summary>
+            <remarks>
+            Always returns false.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.CanRead">
+            <summary>
+            Indicates whether the stream supports Read operations.
+            </summary>
+            <remarks>
+            Always returns false.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.CanWrite">
+            <summary>
+            Indicates whether the stream supports Write operations.
+            </summary>
+            <remarks>
+            Returns true if the provided stream is writable.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Length">
+            <summary>
+            Reading this property always throws a NotImplementedException.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ParallelDeflateOutputStream.Position">
+            <summary>
+            Reading or Writing this property always throws a NotImplementedException.
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.CompressionLevel">
+            <summary>
+            The compression level to be used when using a DeflateStream or ZlibStream with CompressionMode.Compress.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.None">
+            <summary>
+            None means that the data will be simply stored, with no change at all.
+            If you are producing ZIPs for use on Mac OSX, be aware that archives produced with CompressionLevel.None
+            cannot be opened with the default zip reader. Use a different CompressionLevel.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level0">
+            <summary>
+            Same as None.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.BestSpeed">
+            <summary>
+            The fastest but least effective compression.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level1">
+            <summary>
+            A synonym for BestSpeed.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level2">
+            <summary>
+            A little slower, but better, than level 1.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level3">
+            <summary>
+            A little slower, but better, than level 2.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level4">
+            <summary>
+            A little slower, but better, than level 3.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level5">
+            <summary>
+            A little slower than level 4, but with better compression.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Default">
+            <summary>
+            The default compression level, with a good balance of speed and compression efficiency.   
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level6">
+            <summary>
+            A synonym for Default.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level7">
+            <summary>
+            Pretty good compression!
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level8">
+            <summary>
+             Better compression than Level7!
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.BestCompression">
+            <summary>
+            The "best" compression, where best means greatest reduction in size of the input data stream. 
+            This is also the slowest compression.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionLevel.Level9">
+            <summary>
+            A synonym for BestCompression.
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.CompressionStrategy">
+            <summary>
+            Describes options for how the compression algorithm is executed.  Different strategies
+            work better on different sorts of data.  The strategy parameter can affect the compression
+            ratio and the speed of compression but not the correctness of the compresssion.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionStrategy.Default">
+            <summary>
+            The default strategy is probably the best for normal data. 
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionStrategy.Filtered">
+            <summary>
+            The <c>Filtered</c> strategy is intended to be used most effectively with data produced by a
+            filter or predictor.  By this definition, filtered data consists mostly of small
+            values with a somewhat random distribution.  In this case, the compression algorithm
+            is tuned to compress them better.  The effect of <c>Filtered</c> is to force more Huffman
+            coding and less string matching; it is a half-step between <c>Default</c> and <c>HuffmanOnly</c>.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.CompressionStrategy.HuffmanOnly">
+            <summary>
+            Using <c>HuffmanOnly</c> will force the compressor to do Huffman encoding only, with no
+            string matching.
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.ZlibException">
+            <summary>
+            A general purpose exception class for exceptions in the Zlib library.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibException.#ctor">
+            <summary>
+            The ZlibException class captures exception information generated
+            by the Zlib library. 
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibException.#ctor(System.String)">
+            <summary>
+            This ctor collects a message attached to the exception.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.SharedUtils.URShift(System.Int32,System.Int32)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.SharedUtils.ReadInput(System.IO.TextReader,System.Byte[],System.Int32,System.Int32)">
+             <summary>
+               Reads a number of characters from the current source TextReader and writes
+               the data to the target array at the specified index.
+             </summary>
+            
+             <param name="sourceTextReader">The source TextReader to read from</param>
+             <param name="target">Contains the array of characteres read from the source TextReader.</param>
+             <param name="start">The starting index of the target array.</param>
+             <param name="count">The maximum number of characters to read from the source TextReader.</param>
+             
+             <returns>
+               The number of characters read. The number will be less than or equal to
+               count depending on the data available in the source TextReader. Returns -1
+               if the end of the stream is reached.
+             </returns>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.Adler">
+            <summary>
+            Computes an Adler-32 checksum. 
+            </summary>
+            <remarks>
+            The Adler checksum is similar to a CRC checksum, but faster to compute, though less
+            reliable.  It is used in producing RFC1950 compressed streams.  The Adler checksum
+            is a required part of the "ZLIB" standard.  Applications will almost never need to
+            use this class directly.
+            </remarks>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.ZlibCodec">
+             <summary>
+             Encoder and Decoder for ZLIB and DEFLATE (IETF RFC1950 and RFC1951).
+             </summary>
+            
+             <remarks>
+             This class compresses and decompresses data according to the Deflate algorithm
+             and optionally, the ZLIB format, as documented in <see
+             href="http://www.ietf.org/rfc/rfc1950.txt">RFC 1950 - ZLIB</see> and <see
+             href="http://www.ietf.org/rfc/rfc1951.txt">RFC 1951 - DEFLATE</see>.
+             </remarks>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.InputBuffer">
+            <summary>
+            The buffer from which data is taken.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.NextIn">
+            <summary>
+            An index into the InputBuffer array, indicating where to start reading. 
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.AvailableBytesIn">
+            <summary>
+            The number of bytes available in the InputBuffer, starting at NextIn. 
+            </summary>
+            <remarks>
+            Generally you should set this to InputBuffer.Length before the first Inflate() or Deflate() call. 
+            The class will update this number as calls to Inflate/Deflate are made.
+            </remarks>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.TotalBytesIn">
+            <summary>
+            Total number of bytes read so far, through all calls to Inflate()/Deflate().
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.OutputBuffer">
+            <summary>
+            Buffer to store output data.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.NextOut">
+            <summary>
+            An index into the OutputBuffer array, indicating where to start writing. 
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.AvailableBytesOut">
+            <summary>
+            The number of bytes available in the OutputBuffer, starting at NextOut. 
+            </summary>
+            <remarks>
+            Generally you should set this to OutputBuffer.Length before the first Inflate() or Deflate() call. 
+            The class will update this number as calls to Inflate/Deflate are made.
+            </remarks>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.TotalBytesOut">
+            <summary>
+            Total number of bytes written to the output so far, through all calls to Inflate()/Deflate().
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.Message">
+            <summary>
+            used for diagnostics, when something goes wrong!
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.CompressLevel">
+            <summary>
+            The compression level to use in this codec.  Useful only in compression mode.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.WindowBits">
+            <summary>
+            The number of Window Bits to use.  
+            </summary>
+            <remarks>
+            This gauges the size of the sliding window, and hence the 
+            compression effectiveness as well as memory consumption. It's best to just leave this 
+            setting alone if you don't know what it is.  The maximum value is 15 bits, which implies
+            a 32k window.  
+            </remarks>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibCodec.Strategy">
+            <summary>
+            The compression strategy to use.
+            </summary>
+            <remarks>
+            This is only effective in compression.  The theory offered by ZLIB is that different
+            strategies could potentially produce significant differences in compression behavior
+            for different data sets.  Unfortunately I don't have any good recommendations for how
+            to set it differently.  When I tested changing the strategy I got minimally different
+            compression performance. It's best to leave this property alone if you don't have a
+            good feel for it.  Or, you may want to produce a test harness that runs through the
+            different strategy options and evaluates them on different file types. If you do that,
+            let me know your results.
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.#ctor">
+            <summary>
+            Create a ZlibCodec.
+            </summary>
+            <remarks>
+            If you use this default constructor, you will later have to explicitly call 
+            InitializeInflate() or InitializeDeflate() before using the ZlibCodec to compress 
+            or decompress. 
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.#ctor(SharpCompress.Compressor.CompressionMode)">
+            <summary>
+            Create a ZlibCodec that either compresses or decompresses.
+            </summary>
+            <param name="mode">
+            Indicates whether the codec should compress (deflate) or decompress (inflate).
+            </param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeInflate">
+            <summary>
+            Initialize the inflation state. 
+            </summary>
+            <remarks>
+            It is not necessary to call this before using the ZlibCodec to inflate data; 
+            It is implicitly called when you call the constructor.
+            </remarks>
+            <returns>Z_OK if everything goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeInflate(System.Boolean)">
+             <summary>
+             Initialize the inflation state with an explicit flag to
+             govern the handling of RFC1950 header bytes.
+             </summary>
+            
+             <remarks>
+             By default, the ZLIB header defined in <see
+             href="http://www.ietf.org/rfc/rfc1950.txt">RFC 1950</see> is expected.  If
+             you want to read a zlib stream you should specify true for
+             expectRfc1950Header.  If you have a deflate stream, you will want to specify
+             false. It is only necessary to invoke this initializer explicitly if you
+             want to specify false.
+             </remarks>
+            
+             <param name="expectRfc1950Header">whether to expect an RFC1950 header byte
+             pair when reading the stream of data to be inflated.</param>
+            
+             <returns>Z_OK if everything goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeInflate(System.Int32)">
+            <summary>
+            Initialize the ZlibCodec for inflation, with the specified number of window bits. 
+            </summary>
+            <param name="windowBits">The number of window bits to use. If you need to ask what that is, 
+            then you shouldn't be calling this initializer.</param>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeInflate(System.Int32,System.Boolean)">
+             <summary>
+             Initialize the inflation state with an explicit flag to govern the handling of
+             RFC1950 header bytes. 
+             </summary>
+            
+             <remarks>
+             If you want to read a zlib stream you should specify true for
+             expectRfc1950Header. In this case, the library will expect to find a ZLIB
+             header, as defined in <see href="http://www.ietf.org/rfc/rfc1950.txt">RFC
+             1950</see>, in the compressed stream.  If you will be reading a DEFLATE or
+             GZIP stream, which does not have such a header, you will want to specify
+             false.
+             </remarks>
+            
+             <param name="expectRfc1950Header">whether to expect an RFC1950 header byte pair when reading 
+             the stream of data to be inflated.</param>
+             <param name="windowBits">The number of window bits to use. If you need to ask what that is, 
+             then you shouldn't be calling this initializer.</param>
+             <returns>Z_OK if everything goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.Inflate(SharpCompress.Compressor.Deflate.FlushType)">
+             <summary>
+             Inflate the data in the InputBuffer, placing the result in the OutputBuffer.
+             </summary>
+             <remarks>
+             You must have set InputBuffer and OutputBuffer, NextIn and NextOut, and AvailableBytesIn and 
+             AvailableBytesOut  before calling this method.
+             </remarks>
+             <example>
+             <code>
+             private void InflateBuffer()
+             {
+                 int bufferSize = 1024;
+                 byte[] buffer = new byte[bufferSize];
+                 ZlibCodec decompressor = new ZlibCodec();
+             
+                 Console.WriteLine("\n============================================");
+                 Console.WriteLine("Size of Buffer to Inflate: {0} bytes.", CompressedBytes.Length);
+                 MemoryStream ms = new MemoryStream(DecompressedBytes);
+             
+                 int rc = decompressor.InitializeInflate();
+             
+                 decompressor.InputBuffer = CompressedBytes;
+                 decompressor.NextIn = 0;
+                 decompressor.AvailableBytesIn = CompressedBytes.Length;
+             
+                 decompressor.OutputBuffer = buffer;
+             
+                 // pass 1: inflate 
+                 do
+                 {
+                     decompressor.NextOut = 0;
+                     decompressor.AvailableBytesOut = buffer.Length;
+                     rc = decompressor.Inflate(FlushType.None);
+             
+                     if (rc != ZlibConstants.Z_OK &amp;&amp; rc != ZlibConstants.Z_STREAM_END)
+                         throw new Exception("inflating: " + decompressor.Message);
+             
+                     ms.Write(decompressor.OutputBuffer, 0, buffer.Length - decompressor.AvailableBytesOut);
+                 }
+                 while (decompressor.AvailableBytesIn &gt; 0 || decompressor.AvailableBytesOut == 0);
+             
+                 // pass 2: finish and flush
+                 do
+                 {
+                     decompressor.NextOut = 0;
+                     decompressor.AvailableBytesOut = buffer.Length;
+                     rc = decompressor.Inflate(FlushType.Finish);
+             
+                     if (rc != ZlibConstants.Z_STREAM_END &amp;&amp; rc != ZlibConstants.Z_OK)
+                         throw new Exception("inflating: " + decompressor.Message);
+             
+                     if (buffer.Length - decompressor.AvailableBytesOut &gt; 0)
+                         ms.Write(buffer, 0, buffer.Length - decompressor.AvailableBytesOut);
+                 }
+                 while (decompressor.AvailableBytesIn &gt; 0 || decompressor.AvailableBytesOut == 0);
+             
+                 decompressor.EndInflate();
+             }
+            
+             </code>
+             </example>
+             <param name="flush">The flush to use when inflating.</param>
+             <returns>Z_OK if everything goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.EndInflate">
+            <summary>
+            Ends an inflation session. 
+            </summary>
+            <remarks>
+            Call this after successively calling Inflate().  This will cause all buffers to be flushed. 
+            After calling this you cannot call Inflate() without a intervening call to one of the
+            InitializeInflate() overloads.
+            </remarks>
+            <returns>Z_OK if everything goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.SyncInflate">
+            <summary>
+            I don't know what this does!
+            </summary>
+            <returns>Z_OK if everything goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeDeflate">
+            <summary>
+            Initialize the ZlibCodec for deflation operation.
+            </summary>
+            <remarks>
+            The codec will use the MAX window bits and the default level of compression.
+            </remarks>
+            <example>
+            <code>
+             int bufferSize = 40000;
+             byte[] CompressedBytes = new byte[bufferSize];
+             byte[] DecompressedBytes = new byte[bufferSize];
+             
+             ZlibCodec compressor = new ZlibCodec();
+             
+             compressor.InitializeDeflate(CompressionLevel.Default);
+             
+             compressor.InputBuffer = System.Text.ASCIIEncoding.ASCII.GetBytes(TextToCompress);
+             compressor.NextIn = 0;
+             compressor.AvailableBytesIn = compressor.InputBuffer.Length;
+             
+             compressor.OutputBuffer = CompressedBytes;
+             compressor.NextOut = 0;
+             compressor.AvailableBytesOut = CompressedBytes.Length;
+             
+             while (compressor.TotalBytesIn != TextToCompress.Length &amp;&amp; compressor.TotalBytesOut &lt; bufferSize)
+             {
+               compressor.Deflate(FlushType.None);
+             }
+             
+             while (true)
+             {
+               int rc= compressor.Deflate(FlushType.Finish);
+               if (rc == ZlibConstants.Z_STREAM_END) break;
+             }
+             
+             compressor.EndDeflate();
+              
+            </code>
+            </example>
+            <returns>Z_OK if all goes well. You generally don't need to check the return code.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeDeflate(SharpCompress.Compressor.Deflate.CompressionLevel)">
+            <summary>
+            Initialize the ZlibCodec for deflation operation, using the specified CompressionLevel.
+            </summary>
+            <remarks>
+            The codec will use the maximum window bits (15) and the specified
+            CompressionLevel.  It will emit a ZLIB stream as it compresses.
+            </remarks>
+            <param name="level">The compression level for the codec.</param>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeDeflate(SharpCompress.Compressor.Deflate.CompressionLevel,System.Boolean)">
+            <summary>
+            Initialize the ZlibCodec for deflation operation, using the specified CompressionLevel, 
+            and the explicit flag governing whether to emit an RFC1950 header byte pair.
+            </summary>
+            <remarks>
+            The codec will use the maximum window bits (15) and the specified CompressionLevel.
+            If you want to generate a zlib stream, you should specify true for
+            wantRfc1950Header. In this case, the library will emit a ZLIB
+            header, as defined in <see href="http://www.ietf.org/rfc/rfc1950.txt">RFC
+            1950</see>, in the compressed stream.  
+            </remarks>
+            <param name="level">The compression level for the codec.</param>
+            <param name="wantRfc1950Header">whether to emit an initial RFC1950 byte pair in the compressed stream.</param>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeDeflate(SharpCompress.Compressor.Deflate.CompressionLevel,System.Int32)">
+            <summary>
+            Initialize the ZlibCodec for deflation operation, using the specified CompressionLevel, 
+            and the specified number of window bits. 
+            </summary>
+            <remarks>
+            The codec will use the specified number of window bits and the specified CompressionLevel.
+            </remarks>
+            <param name="level">The compression level for the codec.</param>
+            <param name="bits">the number of window bits to use.  If you don't know what this means, don't use this method.</param>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.InitializeDeflate(SharpCompress.Compressor.Deflate.CompressionLevel,System.Int32,System.Boolean)">
+             <summary>
+             Initialize the ZlibCodec for deflation operation, using the specified
+             CompressionLevel, the specified number of window bits, and the explicit flag
+             governing whether to emit an RFC1950 header byte pair.
+             </summary>
+            
+             <param name="level">The compression level for the codec.</param>
+             <param name="wantRfc1950Header">whether to emit an initial RFC1950 byte pair in the compressed stream.</param>
+             <param name="bits">the number of window bits to use.  If you don't know what this means, don't use this method.</param>
+             <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.Deflate(SharpCompress.Compressor.Deflate.FlushType)">
+            <summary>
+            Deflate one batch of data.
+            </summary>
+            <remarks>
+            You must have set InputBuffer and OutputBuffer before calling this method.
+            </remarks>
+            <example>
+            <code>
+            private void DeflateBuffer(CompressionLevel level)
+            {
+                int bufferSize = 1024;
+                byte[] buffer = new byte[bufferSize];
+                ZlibCodec compressor = new ZlibCodec();
+            
+                Console.WriteLine("\n============================================");
+                Console.WriteLine("Size of Buffer to Deflate: {0} bytes.", UncompressedBytes.Length);
+                MemoryStream ms = new MemoryStream();
+            
+                int rc = compressor.InitializeDeflate(level);
+            
+                compressor.InputBuffer = UncompressedBytes;
+                compressor.NextIn = 0;
+                compressor.AvailableBytesIn = UncompressedBytes.Length;
+            
+                compressor.OutputBuffer = buffer;
+            
+                // pass 1: deflate 
+                do
+                {
+                    compressor.NextOut = 0;
+                    compressor.AvailableBytesOut = buffer.Length;
+                    rc = compressor.Deflate(FlushType.None);
+            
+                    if (rc != ZlibConstants.Z_OK &amp;&amp; rc != ZlibConstants.Z_STREAM_END)
+                        throw new Exception("deflating: " + compressor.Message);
+            
+                    ms.Write(compressor.OutputBuffer, 0, buffer.Length - compressor.AvailableBytesOut);
+                }
+                while (compressor.AvailableBytesIn &gt; 0 || compressor.AvailableBytesOut == 0);
+            
+                // pass 2: finish and flush
+                do
+                {
+                    compressor.NextOut = 0;
+                    compressor.AvailableBytesOut = buffer.Length;
+                    rc = compressor.Deflate(FlushType.Finish);
+            
+                    if (rc != ZlibConstants.Z_STREAM_END &amp;&amp; rc != ZlibConstants.Z_OK)
+                        throw new Exception("deflating: " + compressor.Message);
+            
+                    if (buffer.Length - compressor.AvailableBytesOut &gt; 0)
+                        ms.Write(buffer, 0, buffer.Length - compressor.AvailableBytesOut);
+                }
+                while (compressor.AvailableBytesIn &gt; 0 || compressor.AvailableBytesOut == 0);
+            
+                compressor.EndDeflate();
+            
+                ms.Seek(0, SeekOrigin.Begin);
+                CompressedBytes = new byte[compressor.TotalBytesOut];
+                ms.Read(CompressedBytes, 0, CompressedBytes.Length);
+            }
+            </code>
+            </example>
+            <param name="flush">whether to flush all data as you deflate. Generally you will want to 
+            use Z_NO_FLUSH here, in a series of calls to Deflate(), and then call EndDeflate() to 
+            flush everything. 
+            </param>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.EndDeflate">
+            <summary>
+            End a deflation session.
+            </summary>
+            <remarks>
+            Call this after making a series of one or more calls to Deflate(). All buffers are flushed.
+            </remarks>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.ResetDeflate">
+            <summary>
+            Reset a codec for another deflation session.
+            </summary>
+            <remarks>
+            Call this to reset the deflation state.  For example if a thread is deflating
+            non-consecutive blocks, you can call Reset() after the Deflate(Sync) of the first
+            block and before the next Deflate(None) of the second block.
+            </remarks>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.SetDeflateParams(SharpCompress.Compressor.Deflate.CompressionLevel,SharpCompress.Compressor.Deflate.CompressionStrategy)">
+            <summary>
+            Set the CompressionStrategy and CompressionLevel for a deflation session.
+            </summary>
+            <param name="level">the level of compression to use.</param>
+            <param name="strategy">the strategy to use for compression.</param>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibCodec.SetDictionary(System.Byte[])">
+            <summary>
+            Set the dictionary to be used for either Inflation or Deflation.
+            </summary>
+            <param name="dictionary">The dictionary bytes to use.</param>
+            <returns>Z_OK if all goes well.</returns>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibCodec.Adler32">
+            <summary>
+            The Adler32 checksum on the data transferred through the codec so far. You probably don't need to look at this.
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.Deflate.ZlibConstants">
+            <summary>
+            A bunch of constants used in the Zlib interface.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.WindowBitsMax">
+            <summary>
+            The maximum number of window bits for the Deflate algorithm.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.WindowBitsDefault">
+            <summary>
+            The default number of window bits for the Deflate algorithm.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.Z_OK">
+            <summary>
+            indicates everything is A-OK
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.Z_STREAM_END">
+            <summary>
+            Indicates that the last operation reached the end of the stream.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.Z_NEED_DICT">
+            <summary>
+            The operation ended in need of a dictionary. 
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.Z_STREAM_ERROR">
+            <summary>
+            There was an error with the stream - not enough data, not open and readable, etc.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.Z_DATA_ERROR">
+            <summary>
+            There was an error with the data - not enough data, bad data, etc.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.Z_BUF_ERROR">
+            <summary>
+            There was an error with the working buffer.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.WorkingBufferSizeDefault">
+            <summary>
+            The size of the working buffer used in the ZlibCodec class. Defaults to 8192 bytes.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.Deflate.ZlibConstants.WorkingBufferSizeMin">
+            <summary>
+            The minimum size of the working buffer used in the ZlibCodec class.  Currently it is 128 bytes.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibStream.Dispose(System.Boolean)">
+            <summary>
+            Dispose the stream.
+            </summary>
+            <remarks>
+            This may or may not result in a <c>Close()</c> call on the captive stream.
+            See the constructors that have a  <c>leaveOpen</c> parameter for more information.
+            </remarks>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibStream.Flush">
+            <summary>
+            Flush the stream.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibStream.Read(System.Byte[],System.Int32,System.Int32)">
+             <summary>
+             Read data from the stream.
+             </summary>
+            
+             <remarks>
+            
+             <para>
+               If you wish to use the <c>ZlibStream</c> to compress data while reading,
+               you can create a <c>ZlibStream</c> with <c>CompressionMode.Compress</c>,
+               providing an uncompressed data stream.  Then call <c>Read()</c> on that
+               <c>ZlibStream</c>, and the data read will be compressed.  If you wish to
+               use the <c>ZlibStream</c> to decompress data while reading, you can create
+               a <c>ZlibStream</c> with <c>CompressionMode.Decompress</c>, providing a
+               readable compressed data stream.  Then call <c>Read()</c> on that
+               <c>ZlibStream</c>, and the data will be decompressed as it is read.
+             </para>
+            
+             <para>
+               A <c>ZlibStream</c> can be used for <c>Read()</c> or <c>Write()</c>, but
+               not both.
+             </para>
+            
+             </remarks>
+             <param name="buffer">The buffer into which the read data should be placed.</param>
+             <param name="offset">the offset within that data array to put the first byte read.</param>
+             <param name="count">the number of bytes to read.</param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            Calling this method always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibStream.SetLength(System.Int64)">
+            <summary>
+            Calling this method always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Deflate.ZlibStream.Write(System.Byte[],System.Int32,System.Int32)">
+             <summary>
+             Write data to the stream.
+             </summary>
+            
+             <remarks>
+            
+             <para>
+               If you wish to use the <c>ZlibStream</c> to compress data while writing,
+               you can create a <c>ZlibStream</c> with <c>CompressionMode.Compress</c>,
+               and a writable output stream.  Then call <c>Write()</c> on that
+               <c>ZlibStream</c>, providing uncompressed data as input.  The data sent to
+               the output stream will be the compressed form of the data written.  If you
+               wish to use the <c>ZlibStream</c> to decompress data while writing, you
+               can create a <c>ZlibStream</c> with <c>CompressionMode.Decompress</c>, and a
+               writable output stream.  Then call <c>Write()</c> on that stream,
+               providing previously compressed data. The data sent to the output stream
+               will be the decompressed form of the data written.
+             </para>
+            
+             <para>
+               A <c>ZlibStream</c> can be used for <c>Read()</c> or <c>Write()</c>, but not both.
+             </para>
+             </remarks>
+             <param name="buffer">The buffer holding data to write to the stream.</param>
+             <param name="offset">the offset within that data array to find the first byte to write.</param>
+             <param name="count">the number of bytes to write.</param>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.FlushMode">
+            <summary>
+            This property sets the flush behavior on the stream.
+            Sorry, though, not sure exactly how to describe all the various settings.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.BufferSize">
+             <summary>
+               The size of the working buffer for the compression codec.
+             </summary>
+            
+             <remarks>
+             <para>
+               The working buffer is used for all stream operations.  The default size is
+               1024 bytes. The minimum size is 128 bytes. You may get better performance
+               with a larger buffer.  Then again, you might not.  You would have to test
+               it.
+             </para>
+            
+             <para>
+               Set this before the first call to <c>Read()</c> or <c>Write()</c> on the
+               stream. If you try to set it afterwards, it will throw.
+             </para>
+             </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.TotalIn">
+            <summary> Returns the total number of bytes input so far.</summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.TotalOut">
+            <summary> Returns the total number of bytes output so far.</summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.CanRead">
+            <summary>
+            Indicates whether the stream can be read.
+            </summary>
+            <remarks>
+            The return value depends on whether the captive stream supports reading.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.CanSeek">
+            <summary>
+            Indicates whether the stream supports Seek operations.
+            </summary>
+            <remarks>
+            Always returns false.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.CanWrite">
+            <summary>
+            Indicates whether the stream can be written.
+            </summary>
+            <remarks>
+            The return value depends on whether the captive stream supports writing.
+            </remarks>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.Length">
+            <summary>
+            Reading this property always throws a <see cref="T:System.NotImplementedException"/>.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Compressor.Deflate.ZlibStream.Position">
+             <summary>
+               The position of the stream pointer.
+             </summary>
+            
+             <remarks>
+               Setting this property always throws a <see cref="T:System.NotImplementedException"/>. Reading will return the total bytes
+               written out, if used in writing, or the total bytes read in, if used in
+               reading.  The count may refer to compressed bytes or uncompressed bytes,
+               depending on how you've used the stream.
+             </remarks>
+        </member>
+        <member name="T:SharpCompress.Compressor.LZMA.DataErrorException">
+            <summary>
+            The exception that is thrown when an error in input stream occurs during decoding.
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Compressor.LZMA.InvalidParamException">
+            <summary>
+            The exception that is thrown when the value of an argument is outside the allowable range.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.LZMA.ICodeProgress.SetProgress(System.Int64,System.Int64)">
+            <summary>
+            Callback progress.
+            </summary>
+            <param name="inSize">
+            input size. -1 if unknown.
+            </param>
+            <param name="outSize">
+            output size. -1 if unknown.
+            </param>
+        </member>
+        <member name="M:SharpCompress.Compressor.LZMA.ICoder.Code(System.IO.Stream,System.IO.Stream,System.Int64,System.Int64,SharpCompress.Compressor.LZMA.ICodeProgress)">
+            <summary>
+            Codes streams.
+            </summary>
+            <param name="inStream">
+            input Stream.
+            </param>
+            <param name="outStream">
+            output Stream.
+            </param>
+            <param name="inSize">
+            input Size. -1 if unknown.
+            </param>
+            <param name="outSize">
+            output Size. -1 if unknown.
+            </param>
+            <param name="progress">
+            callback progress reference.
+            </param>
+        </member>
+        <member name="T:SharpCompress.Compressor.LZMA.CoderPropID">
+            <summary>
+            Provides the fields that represent properties idenitifiers for compressing.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.DefaultProp">
+            <summary>
+            Specifies default property.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.DictionarySize">
+            <summary>
+            Specifies size of dictionary.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.UsedMemorySize">
+            <summary>
+            Specifies size of memory for PPM*.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.Order">
+            <summary>
+            Specifies order for PPM methods.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.BlockSize">
+            <summary>
+            Specifies Block Size.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.PosStateBits">
+            <summary>
+            Specifies number of postion state bits for LZMA (0 - x - 4).
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.LitContextBits">
+            <summary>
+            Specifies number of literal context bits for LZMA (0 - x - 8).
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.LitPosBits">
+            <summary>
+            Specifies number of literal position bits for LZMA (0 - x - 4).
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.NumFastBytes">
+            <summary>
+            Specifies number of fast bytes for LZ*.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.MatchFinder">
+            <summary>
+            Specifies match finder. LZMA: "BT2", "BT4" or "BT4B".
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.MatchFinderCycles">
+            <summary>
+            Specifies the number of match finder cyckes.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.NumPasses">
+            <summary>
+            Specifies number of passes.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.Algorithm">
+            <summary>
+            Specifies number of algorithm.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.NumThreads">
+            <summary>
+            Specifies the number of threads.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Compressor.LZMA.CoderPropID.EndMarker">
+            <summary>
+            Specifies mode with end marker.
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Common.Rar.Headers.FileNameDecoder">
+            <summary>
+            This is for the crazy Rar encoding that I don't understand
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchiveExtensions.IsFirstVolume(SharpCompress.Archive.Rar.RarArchive)">
+            <summary>
+            RarArchive is the first volume of a multi-part archive.  If MultipartVolume is true and IsFirstVolume is false then the first volume file must be missing.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchiveExtensions.IsMultipartVolume(SharpCompress.Archive.Rar.RarArchive)">
+            <summary>
+            RarArchive is part of a multi-part archive.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchiveExtensions.IsSolidArchive(SharpCompress.Archive.Rar.RarArchive)">
+            <summary>
+            RarArchive is SOLID (this means the Archive saved bytes by reusing information which helps for archives containing many small files).
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.IArchiveEntryExtensions.WriteToDirectory(SharpCompress.Archive.IArchiveEntry,System.String,SharpCompress.Common.ExtractOptions)">
+            <summary>
+            Extract to specific directory, retaining filename
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.IArchiveEntryExtensions.WriteToFile(SharpCompress.Archive.IArchiveEntry,System.String,SharpCompress.Common.ExtractOptions)">
+            <summary>
+            Extract to specific file
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarEntry.Crc">
+            <summary>
+            The File's 32 bit CRC Hash
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarEntry.FilePath">
+            <summary>
+            The path of the file internal to the Rar Archive.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarEntry.LastModifiedTime">
+            <summary>
+            The entry last modified time in the archive, if recorded
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarEntry.CreatedTime">
+            <summary>
+            The entry create time in the archive, if recorded
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarEntry.LastAccessedTime">
+            <summary>
+            The entry last accessed time in the archive, if recorded
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarEntry.ArchivedTime">
+            <summary>
+            The entry time whend archived, if recorded
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarEntry.IsEncrypted">
+            <summary>
+            Entry is password protected and encrypted and cannot be extracted.
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.RarEntry.IsDirectory">
+            <summary>
+            Entry is password protected and encrypted and cannot be extracted.
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Common.Options.None">
+            <summary>
+            No options specified
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Common.Options.KeepStreamsOpen">
+            <summary>
+            SharpCompress will keep the supplied streams open
+            </summary>
+        </member>
+        <member name="F:SharpCompress.Common.Options.LookForHeader">
+            <summary>
+            Look for RarArchive (Check for self-extracting archives or cases where RarArchive isn't at the start of the file)
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Reader.Rar.RarReader">
+            <summary>
+            This class faciliates Reading a Rar Archive in a non-seekable forward-only manner
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Reader.Rar.RarReader.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Opens a RarReader for Non-seeking usage with a single volume
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Reader.Rar.RarReader.Open(System.Collections.Generic.IEnumerable{System.IO.Stream},SharpCompress.Common.Options)">
+            <summary>
+            Opens a RarReader for Non-seeking usage with multiple volumes
+            </summary>
+            <param name="streams"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SharpCompress.Reader.IReaderExtensions.WriteAllToDirectory(SharpCompress.Reader.IReader,System.String,SharpCompress.Common.ExtractOptions)">
+            <summary>
+            Extract all remaining unread entries to specific directory, retaining filename
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Reader.IReaderExtensions.WriteEntryToDirectory(SharpCompress.Reader.IReader,System.String,SharpCompress.Common.ExtractOptions)">
+            <summary>
+            Extract to specific directory, retaining filename
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Reader.IReaderExtensions.WriteEntryToFile(SharpCompress.Reader.IReader,System.String,SharpCompress.Common.ExtractOptions)">
+            <summary>
+            Extract to specific file
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Reader.Rar.RarReaderEntry.CompressedSize">
+            <summary>
+            The compressed file size
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Reader.Rar.RarReaderEntry.Size">
+            <summary>
+            The uncompressed file size
+            </summary>
+        </member>
+        <member name="T:SharpCompress.Common.Rar.RarFilePart">
+            <summary>
+            This represents a single file part that exists in a rar volume.  A compressed file is one or many file parts that are spread across one or may rar parts.
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Reader.Tar.TarReader.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Opens a TarReader for Non-seeking usage with a single volume
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SharpCompress.Archive.Rar.FileInfoRarArchiveVolume">
+            <summary>
+            A rar part based on a FileInfo object
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.Headers.RarHeader.ReadBytes">
+            <summary>
+            This is the number of bytes read when reading the header
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.Headers.RarHeader.Flags">
+            <summary>
+            Untyped flags.  These should be typed when Promoting to another header
+            </summary>
+        </member>
+        <member name="P:SharpCompress.Common.Rar.Headers.RarHeader.AdditionalSize">
+            <summary>
+            This additional size of the header could be file data
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.#ctor(System.IO.FileInfo,SharpCompress.Common.Options)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.#ctor(System.Collections.Generic.IEnumerable{System.IO.Stream},SharpCompress.Common.Options)">
+            <summary>
+            Takes multiple seekable Streams for a multi-part archive
+            </summary>
+            <param name="streams"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.Open(System.String)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.Open(System.IO.FileInfo)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.Open(System.String,SharpCompress.Common.Options)">
+            <summary>
+            Constructor expects a filepath to an existing file.
+            </summary>
+            <param name="filePath"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.Open(System.IO.FileInfo,SharpCompress.Common.Options)">
+            <summary>
+            Constructor with a FileInfo object to an existing file.
+            </summary>
+            <param name="fileInfo"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.Open(System.IO.Stream)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.Open(System.IO.Stream,SharpCompress.Common.Options)">
+            <summary>
+            Takes a seekable Stream as a source
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.Open(System.Collections.Generic.IEnumerable{System.IO.Stream})">
+            <summary>
+            Takes multiple seekable Streams for a multi-part archive
+            </summary>
+            <param name="streams"></param>
+        </member>
+        <member name="M:SharpCompress.Archive.Rar.RarArchive.Open(System.Collections.Generic.IEnumerable{System.IO.Stream},SharpCompress.Common.Options)">
+            <summary>
+            Takes multiple seekable Streams for a multi-part archive
+            </summary>
+            <param name="streams"></param>
+            <param name="options"></param>
+        </member>
+        <member name="P:SharpCompress.Compressor.Rar.decode.Decode.DecodeLen">
+            <summary> returns the decode Length array</summary>
+            <returns> decodeLength
+            </returns>
+        </member>
+        <member name="P:SharpCompress.Compressor.Rar.decode.Decode.DecodeNum">
+            <summary> returns the decode num array</summary>
+            <returns> decodeNum
+            </returns>
+        </member>
+        <member name="P:SharpCompress.Compressor.Rar.decode.Decode.DecodePos">
+            <summary> returns the decodePos array</summary>
+            <returns> decodePos
+            </returns>
+        </member>
+        <member name="T:SharpCompress.Compressor.Rar.Unpack20">
+            <summary> DOCUMENT ME
+            
+            </summary>
+            <author>  $LastChangedBy$
+            </author>
+            <version>  $LastChangedRevision$
+            </version>
+        </member>
+        <member name="T:SharpCompress.Compressor.Rar.Unpack15">
+            <summary> DOCUMENT ME
+            
+            </summary>
+            <author>  $LastChangedBy$
+            </author>
+            <version>  $LastChangedRevision$
+            </version>
+        </member>
+        <member name="F:SharpCompress.Compressor.Rar.VM.BitInput.MAX_SIZE">
+            <summary> the max size of the input</summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Rar.VM.BitInput.#ctor">
+            <summary>  </summary>
+        </member>
+        <member name="M:SharpCompress.Compressor.Rar.VM.BitInput.AddBits(System.Int32)">
+            <summary>
+            also named faddbits
+            </summary>
+            <param name="bits"></param>
+        </member>
+        <member name="M:SharpCompress.Compressor.Rar.VM.BitInput.GetBits">
+            <summary> 
+            (also named fgetbits)
+            </summary>
+            <returns>
+            the bits (unsigned short) 
+            </returns>
+        </member>
+        <member name="M:SharpCompress.Compressor.Rar.VM.BitInput.Overflow(System.Int32)">
+            <summary> Indicates an Overfow</summary>
+            <param name="IncPtr">how many bytes to inc
+            </param>
+            <returns> true if an Oververflow would occur
+            </returns>
+        </member>
+        <member name="M:SharpCompress.Utility.URShift(System.Int32,System.Int32)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:SharpCompress.Utility.URShift(System.Int32,System.Int64)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:SharpCompress.Utility.URShift(System.Int64,System.Int32)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:SharpCompress.Utility.URShift(System.Int64,System.Int64)">
+            <summary>
+            Performs an unsigned bitwise right shift with the specified number
+            </summary>
+            <param name="number">Number to operate on</param>
+            <param name="bits">Ammount of bits to shift</param>
+            <returns>The resulting number from the shift operation</returns>
+        </member>
+        <member name="M:SharpCompress.Utility.Fill``1(``0[],System.Int32,System.Int32,``0)">
+            <summary>
+            Fills the array with an specific value from an specific index to an specific index.
+            </summary>
+            <param name="array">The array to be filled.</param>
+            <param name="fromindex">The first index to be filled.</param>
+            <param name="toindex">The last index to be filled.</param>
+            <param name="val">The value to fill the array with.</param>
+        </member>
+        <member name="M:SharpCompress.Utility.Fill``1(``0[],``0)">
+            <summary>
+            Fills the array with an specific value.
+            </summary>
+            <param name="array">The array to be filled.</param>
+            <param name="val">The value to fill the array with.</param>
+        </member>
+        <member name="M:SharpCompress.Utility.readIntBigEndian(System.Byte[],System.Int32)">
+            <summary> Read a int value from the byte array at the given position (Big Endian)
+            
+            </summary>
+            <param name="array">the array to read from
+            </param>
+            <param name="pos">the offset
+            </param>
+            <returns> the value
+            </returns>
+        </member>
+        <member name="M:SharpCompress.Utility.readShortLittleEndian(System.Byte[],System.Int32)">
+            <summary> Read a short value from the byte array at the given position (little
+            Endian)
+            
+            </summary>
+            <param name="array">the array to read from
+            </param>
+            <param name="pos">the offset
+            </param>
+            <returns> the value
+            </returns>
+        </member>
+        <member name="M:SharpCompress.Utility.readIntLittleEndian(System.Byte[],System.Int32)">
+            <summary> Read an int value from the byte array at the given position (little
+            Endian)
+            
+            </summary>
+            <param name="array">the array to read from
+            </param>
+            <param name="pos">the offset
+            </param>
+            <returns> the value
+            </returns>
+        </member>
+        <member name="M:SharpCompress.Utility.writeIntBigEndian(System.Byte[],System.Int32,System.Int32)">
+            <summary> Write an int value into the byte array at the given position (Big endian)
+            
+            </summary>
+            <param name="array">the array
+            </param>
+            <param name="pos">the offset
+            </param>
+            <param name="value">the value to write
+            </param>
+        </member>
+        <member name="M:SharpCompress.Utility.WriteLittleEndian(System.Byte[],System.Int32,System.Int16)">
+            <summary> Write a short value into the byte array at the given position (little
+            endian)
+            
+            </summary>
+            <param name="array">the array
+            </param>
+            <param name="pos">the offset
+            </param>
+            <param name="value">the value to write
+            </param>
+        </member>
+        <member name="M:SharpCompress.Utility.incShortLittleEndian(System.Byte[],System.Int32,System.Int16)">
+            <summary> Increment a short value at the specified position by the specified amount
+            (little endian).
+            </summary>
+        </member>
+        <member name="M:SharpCompress.Utility.WriteLittleEndian(System.Byte[],System.Int32,System.Int32)">
+            <summary> Write an int value into the byte array at the given position (little
+            endian)
+            
+            </summary>
+            <param name="array">the array
+            </param>
+            <param name="pos">the offset
+            </param>
+            <param name="value">the value to write
+            </param>
+        </member>
+        <member name="M:SharpCompress.Reader.Zip.ZipReader.Open(System.IO.Stream,System.String,SharpCompress.Common.Options)">
+            <summary>
+            Opens a ZipReader for Non-seeking usage with a single volume
+            </summary>
+            <param name="stream"></param>
+            <param name="options"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

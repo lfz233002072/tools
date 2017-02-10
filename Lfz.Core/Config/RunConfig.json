@@ -1,0 +1,5 @@
+﻿{
+    LoggerType: 3,
+    ApiDomainUrl: "http://api.ziyouchi.com",
+    EnabledEncrypt: false
+}

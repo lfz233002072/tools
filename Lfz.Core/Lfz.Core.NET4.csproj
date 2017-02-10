@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1CFB2DDD-58EA-4750-BD9D-68353CF1FF8D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lfz</RootNamespace>
+    <AssemblyName>Lfz.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\Lfz.Core.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Apache.NMS">
+      <HintPath>..\Lib\ActiveMQ\Apache.NMS.dll</HintPath>
+    </Reference>
+    <Reference Include="Apache.NMS.ActiveMQ">
+      <HintPath>..\Lib\ActiveMQ\Apache.NMS.ActiveMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\Lib\EF4\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\Lib\EF4\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\Lib\FluentNHibernate.2.0.3.0\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.IWshRuntimeLibrary">
+      <HintPath>..\Lib\Interop.IWshRuntimeLibrary.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.8.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MySql.Data.6.9.8\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Lib\NHibernate.4.0.4.4000\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\Lib\ServiceStack.Redis.3.9.71\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\Lib\ServiceStack.Redis.3.9.71\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\Lib\ServiceStack.Redis.3.9.71\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\Lib\ServiceStack.Redis.3.9.71\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress">
+      <HintPath>..\Lib\SharpCompress\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\WebApiNET4\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\WebApiNET4\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\WebApiNET4\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\WebApiNET4\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Caching\FileCacheManager.cs" />
+    <Compile Include="Caching\ICacheSerializater.cs" />
+    <Compile Include="Caching\NetMemoryCacheManager.cs" />
+    <Compile Include="Caching\RedisCacheManager.cs" />
+    <Compile Include="Collections\IPageOfDatatable.cs" />
+    <Compile Include="Collections\PageOfDatatable.cs" />
+    <Compile Include="Collections\PageOfItemsExtension.cs" />
+    <Compile Include="Commands\CommandHandlerBase.cs" />
+    <Compile Include="Commands\CommandHandlerNotFoundException.cs" />
+    <Compile Include="Commands\DefaultCommandResult.cs" />
+    <Compile Include="Commands\ICommandBus.cs" />
+    <Compile Include="Commands\ICommandHandler.cs" />
+    <Compile Include="Commands\ICommandResult.cs" />
+    <Compile Include="Commands\IValidationHandler.cs" />
+    <Compile Include="Commands\ValidationHandlerNotFoundException.cs" />
+    <Compile Include="Config\AppSettingsHelper.cs" />
+    <Compile Include="Config\JsonConfigBase.cs" />
+    <Compile Include="Config\RunConfig.cs" />
+    <Compile Include="DataAnnotations\CustomRequiredAttribute.cs" />
+    <Compile Include="Data\CommandInfo.cs" />
+    <Compile Include="Data\DbHelperMySQL.cs" />
+    <Compile Include="Data\DbHelperSql.cs" />
+    <Compile Include="Data\IRawSqlRepository.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\KeyValueEntity.cs" />
+    <Compile Include="Data\Nh\Conventions\AggregateAttribute.cs" />
+    <Compile Include="Data\Nh\Conventions\AttributeCollectionConvention.cs" />
+    <Compile Include="Data\Nh\Conventions\CacheConvention.cs" />
+    <Compile Include="Data\Nh\Conventions\CascadeAllDeleteOrphanAttribute.cs" />
+    <Compile Include="Data\Nh\Conventions\CascadeAllDeleteOrphanConvention.cs" />
+    <Compile Include="Data\Nh\Conventions\RecordTableNameConvention.cs" />
+    <Compile Include="Data\Nh\Conventions\ReferenceConvention.cs" />
+    <Compile Include="Data\Nh\Conventions\StringLengthConvention.cs" />
+    <Compile Include="Data\Nh\Conventions\StringLengthMaxAttribute.cs" />
+    <Compile Include="Data\Nh\Entities\DefaultMap.cs" />
+    <Compile Include="Data\Nh\Entities\EntityBase.cs" />
+    <Compile Include="Data\Nh\Entities\EntityMap.cs" />
+    <Compile Include="Data\Nh\Entities\GuidMap.cs" />
+    <Compile Include="Data\Nh\Entities\MetaEntityBase.cs" />
+    <Compile Include="Data\Nh\INhRepository.cs" />
+    <Compile Include="Data\Nh\INhTypeProvider.cs" />
+    <Compile Include="Data\Nh\NhRepository.cs" />
+    <Compile Include="Data\Nh\NhRepository.partial.cs" />
+    <Compile Include="Data\Nh\Providers\AbstractDataServicesProvider.cs" />
+    <Compile Include="Data\Nh\Providers\AbstractDataServicesProvider.partial.cs" />
+    <Compile Include="Data\Nh\Providers\DataServicesProviderFactory.cs" />
+    <Compile Include="Data\Nh\Providers\IDataServicesProvider.cs" />
+    <Compile Include="Data\Nh\Providers\IDataServicesProviderFactory.cs" />
+    <Compile Include="Data\Nh\Providers\MsSqlCeConfiguration.cs" />
+    <Compile Include="Data\Nh\Providers\MySqlDataServicesProvider.cs" />
+    <Compile Include="Data\Nh\Providers\SqlCeDataServicesProvider.cs" />
+    <Compile Include="Data\Nh\Providers\SqlServerDataServicesProvider.cs" />
+    <Compile Include="Data\Nh\SessionFactoryHolder.cs" />
+    <Compile Include="Data\Nh\SessionInterceptor.cs" />
+    <Compile Include="Data\RawSql\BusinessService.cs" />
+    <Compile Include="Data\RawSql\DbProvider.cs" />
+    <Compile Include="Data\RawSql\DbProviderConfig.cs" />
+    <Compile Include="Data\RawSql\IBusinessService.cs" />
+    <Compile Include="Data\RawSql\IDatabaseInitialise.cs" />
+    <Compile Include="Data\RawSql\IDbProviderConfig.cs" />
+    <Compile Include="Data\RawSql\IRawSqlSearchService.cs" />
+    <Compile Include="Data\RawSql\RawSqlSearchService.cs" />
+    <Compile Include="Data\RawSql\TemplateColumnDataType.cs" />
+    <Compile Include="Data\RawSql\TemplateDataSourceType.cs" />
+    <Compile Include="Data\Repository.cs" />
+    <Compile Include="Data\Schema\StringLengthAttribute.cs" />
+    <Compile Include="Data\Schema\ColumnAttribute.cs" />
+    <Compile Include="Data\SelectTreeListItem.cs" />
+    <Compile Include="Data\RawSqlRepository.cs" />
+    <Compile Include="Enums\AsynchronousCallStatus.cs" />
+    <Compile Include="Enums\BindingMoblieStatus.cs" />
+    <Compile Include="Enums\ChoseYesOrNo.cs" />
+    <Compile Include="Enums\DataStatus.cs" />
+    <Compile Include="Enums\DelFlag.cs" />
+    <Compile Include="Enums\FuncListen.cs" />
+    <Compile Include="Enums\Hr\HrDepartmentType.cs" />
+    <Compile Include="Enums\Hr\HrEnum.cs" />
+    <Compile Include="Enums\Hr\InternalUserRoleType.cs" />
+    <Compile Include="Enums\Hr\ModuleRightsType.cs" />
+    <Compile Include="Enums\Hr\RightHrType.cs" />
+    <Compile Include="Enums\Hr\RightValue.cs" />
+    <Compile Include="Enums\TreeLevel.cs" />
+    <Compile Include="Enums\UserDataStatus.cs" />
+    <Compile Include="IDependency.cs" />
+    <Compile Include="Collections\IPagerInfo.cs" />
+    <Compile Include="Collections\QueryableExtentsion.cs" />
+    <Compile Include="CommonHelper.cs" />
+    <Compile Include="Config\DefaultConfigFileManager.cs" />
+    <Compile Include="Config\EncryptContent.cs" />
+    <Compile Include="Config\IConfigFileManager.cs" />
+    <Compile Include="Config\IConfigInfo.cs" />
+    <Compile Include="Config\SerializationHelper.cs" />
+    <Compile Include="CustomDescriptionAttribute.cs" />
+    <Compile Include="Data\EntityBase.cs" />
+    <Compile Include="Data\Orderable.cs" />
+    <Compile Include="Enums\AttachmentType.cs" />
+    <Compile Include="Enums\Sex.cs" />
+    <Compile Include="IWebHelper.cs" />
+    <Compile Include="Media\WavPlayer.cs" />
+    <Compile Include="Models\ISearchHit.cs" />
+    <Compile Include="Models\IViewStateSearchHit.cs" />
+    <Compile Include="Models\KeySearchHit.cs" />
+    <Compile Include="Models\ListItem.cs" />
+    <Compile Include="Models\PageIndexChangedHit.cs" />
+    <Compile Include="Models\PropertyTrackInfo.cs" />
+    <Compile Include="Models\PropertyTrackStatus.cs" />
+    <Compile Include="Models\SearchHit.cs" />
+    <Compile Include="Models\SearchHitBase.cs" />
+    <Compile Include="Mq\ActiveMQ\ActiveMQPoolConnectionManager.cs" />
+    <Compile Include="Mq\IMqConfigService.cs" />
+    <Compile Include="Mq\MqClientConfigInfo.cs" />
+    <Compile Include="Mq\MqInstanceInfo.cs" />
+    <Compile Include="Network\TcpClientAsyncService.cs" />
+    <Compile Include="ProcessLockHelper.cs" />
+    <Compile Include="Redis\IRedisConfigService.cs" />
+    <Compile Include="Redis\RedisBase.cs" />
+    <Compile Include="Redis\RedisConfig.cs" />
+    <Compile Include="Security\AccessTokenHelper.cs" />
+    <Compile Include="Security\Cryptography\CRCUtils.cs" />
+    <Compile Include="Security\Tencent\Cryptography.cs" />
+    <Compile Include="Security\Tencent\Sample.cs" />
+    <Compile Include="Security\Tencent\WXBizMsgCrypt.cs" />
+    <Compile Include="TcSoftVersion.cs" />
+    <Compile Include="Security\Cryptography\RSACryption.cs" />
+    <Compile Include="Security\Cryptography\StringDECHelper.cs" />
+    <Compile Include="Utitlies\AppUnitity.cs" />
+    <Compile Include="Utitlies\DigitToMoneyText.cs" />
+    <Compile Include="Utitlies\ExportEngine.cs" />
+    <Compile Include="Expressions\PredicateBuilderUtility.cs" />
+    <Compile Include="IO\FileSystemSettings.cs" />
+    <Compile Include="IO\FileSystemStorageProvider.cs" />
+    <Compile Include="IO\IStorageFile.cs" />
+    <Compile Include="IO\IStorageFolder.cs" />
+    <Compile Include="IO\IStorageProvider.cs" />
+    <Compile Include="Logging\ConsoleLoger.cs" />
+    <Compile Include="Logging\LoggerBase.cs" />
+    <Compile Include="Logging\LoggerFactory.cs" />
+    <Compile Include="Logging\LoggerType.cs" />
+    <Compile Include="Logging\LoggingExtensions.cs" />
+    <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="Logging\NLoger.cs" />
+    <Compile Include="Network\CallBackState.cs" />
+    <Compile Include="Network\DataEventArgs.cs" />
+    <Compile Include="Network\HttpListenContext.cs" />
+    <Compile Include="Network\HttpListenServiceBase.cs" />
+    <Compile Include="Network\SocketReceivedEventHandler.cs" />
+    <Compile Include="Network\UdpReceviceEventArgs.cs" />
+    <Compile Include="Rest\HttpContextExtension.cs" />
+    <Compile Include="Rest\IJsonContent.cs" />
+    <Compile Include="Rest\JsonPropertyFilterEnum.cs" />
+    <Compile Include="Rest\JsonUtils.cs" />
+    <Compile Include="Rest\RestContentBase.cs" />
+    <Compile Include="Rest\RestContentBaseExtenstion.cs" />
+    <Compile Include="Rest\RestContentContractResolver.cs" />
+    <Compile Include="Rest\RestResolverFilterAttribute.cs" />
+    <Compile Include="Rest\ResponseContent.cs" />
+    <Compile Include="Rest\RestServiceBaseExtensions.cs" />
+    <Compile Include="Rest\RestStatus.cs" />
+    <Compile Include="Rest\JsonContent.cs" />
+    <Compile Include="Security\AuthorizationManager.cs" />
+    <Compile Include="Security\Cryptography\TripleDESHelper.cs" />
+    <Compile Include="Security\CustomX509Validator.cs" />
+    <Compile Include="Security\Cryptography\DESHelper.cs" />
+    <Compile Include="Security\Cryptography\FileCryptoHelper.cs" />
+    <Compile Include="Security\Cryptography\DefaultRijndaelAlgorithm.cs" />
+    <Compile Include="Security\UserNamePasswordCustomValidator.cs" />
+    <Compile Include="Rest\RestServiceBase.cs" />
+    <Compile Include="Utitlies\NetMailUtils.cs" />
+    <Compile Include="Utitlies\PDFEngine.cs" />
+    <Compile Include="Utitlies\UrlOper.cs" />
+    <Compile Include="Utitlies\Utils.PropertyAssignment.cs" />
+    <Compile Include="Draw\VerifyImage.cs" />
+    <Compile Include="Utitlies\Utils.Regex.cs" />
+    <Compile Include="Utitlies\Utils.WinForm.cs" />
+    <Compile Include="Utitlies\ZipHelper.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
+    <Compile Include="Wcf\DefaultServiceHostFactory.cs" />
+    <Compile Include="Wcf\SelfHostWcfService.cs" />
+    <Compile Include="Services\ServiceEventHandler.cs" />
+    <Compile Include="Security\Hash.cs" />
+    <Compile Include="Draw\LineEquation.cs" />
+    <Compile Include="Utitlies\Singleton.cs" />
+    <Compile Include="Collections\IPageOfItems.cs" />
+    <Compile Include="Collections\PageOfItems.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Network\UdpSyncListenReceviceService.cs" />
+    <Compile Include="Network\UdpListenServiceBase.cs" />
+    <Compile Include="Network\BufferManager.cs" />
+    <Compile Include="Network\TcpListenServiceBase.cs" />
+    <Compile Include="Network\SocketAsyncEventArgsPool.cs" />
+    <Compile Include="Network\TcpClientService.cs" />
+    <Compile Include="Network\UdpSyncListenServiceBase.cs" />
+    <Compile Include="Services\IService.cs" />
+    <Compile Include="Network\PacketBufferToken.cs" />
+    <Compile Include="Services\ServiceBase.cs" />
+    <Compile Include="Services\StringEventArgs.cs" />
+    <Compile Include="Services\ThreadServiceBase.cs" />
+    <Compile Include="Services\TimeServiceBase.cs" />
+    <Compile Include="Logging\NullLogger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Collections\CollectionExtensions.cs" />
+    <Compile Include="Utitlies\Utils.cs" />
+    <Compile Include="Utitlies\TypeParse.cs" />
+    <Compile Include="Utitlies\Utils.partial.cs" />
+    <Compile Include="WebApi\ApiHttpClient.cs" />
+    <Compile Include="WebApi\ApiResult.cs" />
+    <Compile Include="WebApi\PagedApiResult.cs" />
+    <Compile Include="WebApi\ServerApiStatus.cs" />
+    <Compile Include="WebHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\RunConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
