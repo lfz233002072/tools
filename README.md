@@ -36,7 +36,7 @@ Lfz.Commands.ICommandHandler 命令处理Handler
 定时器基类：TimeServiceBase
 线程服务基类：ThreadServiceBase
 
-#12、WCF封装
+###12、WCF封装
 实现WCF宿主工厂等功能
 
 ###13、Utitlies工具类
