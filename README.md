@@ -1,47 +1,50 @@
-C# ¹¤¾ßÏä£¬Ìá¹©Socket£¨TCP¡¢UDPĞ­Òé£©¡¢Redis¡¢activemq¡¢Êı¾İ¿â·ÃÎÊµÈ¼¼ÊõµÄ·â×°ÊµÏÖ 
+C# å·¥å…·ç®±ï¼Œæä¾›Socketï¼ˆTCPã€UDPåè®®ï¼‰ã€Redisã€activemqã€æ•°æ®åº“è®¿é—®ç­‰æŠ€æœ¯çš„å°è£…å®ç° 
 
-###1¡¢»º´æ 
-RedisCacheManager£ºRedis»º´æ·â×°
-NetMemoryCacheManager£ºÄÚ´æ»º´æ·â×°
-FileCacheManager£ºÎÄ¼ş»º´æ·â×°
+###1ã€ç¼“å­˜ 
+RedisCacheManagerï¼šRedisç¼“å­˜å°è£…
+NetMemoryCacheManagerï¼šå†…å­˜ç¼“å­˜å°è£…
+FileCacheManagerï¼šæ–‡ä»¶ç¼“å­˜å°è£…
 
-###2¡¢CQRS(ÃüÁî²éÑ¯Ä£Ê½)ÊµÏÖ
-Lfz.Commands.ICommandBus ÃüÁî×ÜÏß
-Lfz.Commands.ICommandHandler ÃüÁî´¦ÀíHandler
+###2ã€CQRS(å‘½ä»¤æŸ¥è¯¢æ¨¡å¼)å®ç°
+Lfz.Commands.ICommandBus å‘½ä»¤æ€»çº¿
+Lfz.Commands.ICommandHandler å‘½ä»¤å¤„ç†Handler
 
-###3¡¢ÅäÖÃ
-ÔÚConfigÄ¿Â¼ÏÂÊµÏÖÁËJSON¡¢XMLÁ½ÖÖÅäÖÃ·½Ê½
+###3ã€é…ç½®
+åœ¨Configç›®å½•ä¸‹å®ç°äº†JSONã€XMLä¸¤ç§é…ç½®æ–¹å¼
 
-###4¡¢Êı¾İ²Ö´¢
-ÔÚDataÄ¿Â¼ÏÂÊµÏÖÁËÊı¾İ²Ö´¢»ù±¾¹¦ÄÜ£¬°üÀ¨NHibernate¡¢ADO.NET¡¢EFµÈ·½Ê½
+###4ã€æ•°æ®ä»“å‚¨
+åœ¨Dataç›®å½•ä¸‹å®ç°äº†æ•°æ®ä»“å‚¨åŸºæœ¬åŠŸèƒ½ï¼ŒåŒ…æ‹¬NHibernateã€ADO.NETã€EFç­‰æ–¹å¼
 
 
-###5¡¢ÎÄ¼ş·ÃÎÊ
+###5ã€æ–‡ä»¶è®¿é—®
 
-ÔÚIOÄ¿Â¼ÏÂÊµÏÖÎÄ¼ş·ÃÎÊ¹¦ÄÜ
+åœ¨IOç›®å½•ä¸‹å®ç°æ–‡ä»¶è®¿é—®åŠŸèƒ½
 
-###6¡¢Logging ¶àÖĞÀàĞÍÈÕÖ¾·â×°
-ÒÑÊµÏÖlog4net¡¢NlogµÈÈÕÖ¾·â×°
+###6ã€Logging å¤šä¸­ç±»å‹æ—¥å¿—å°è£…
+å·²å®ç°log4netã€Nlogç­‰æ—¥å¿—å°è£…
 
-###7¡¢ActiveMQ ·â×°
+###7ã€ActiveMQ å°è£…
 
-###8¡¢socket·â×°
-°üÀ¨¸ßĞÔÄÜTCP¡¢UDP·â×°¡¢httpĞ­ÒéµÄsocketÊµÏÖ£¬tcp¿Í»§¶Ë·ÃÎÊ·â×°µÈ
+###8ã€socketå°è£…
+åŒ…æ‹¬é«˜æ€§èƒ½TCPã€UDPå°è£…ã€httpåè®®çš„socketå®ç°ï¼Œtcpå®¢æˆ·ç«¯è®¿é—®å°è£…ç­‰
 
-###9¡¢rest apiÊµÏÖ·â×°
+###9ã€rest apiå®ç°å°è£…
 
-###10¡¢Security °²È«¼ÓÃÜÏà¹ØÊµÏÖ
+###10ã€Security å®‰å…¨åŠ å¯†ç›¸å…³å®ç°
 
-###11¡¢ServicesÄ¿Â¼ÊµÏÖ¶¨Ê±Æ÷¡¢¶àÏß³ÌÈÎÎñµÈ¹¦ÄÜ
-¶¨Ê±Æ÷»ùÀà£ºTimeServiceBase
-Ïß³Ì·şÎñ»ùÀà£ºThreadServiceBase
+###11ã€Servicesç›®å½•å®ç°å®šæ—¶å™¨ã€å¤šçº¿ç¨‹ä»»åŠ¡ç­‰åŠŸèƒ½
+å®šæ—¶å™¨åŸºç±»ï¼šTimeServiceBase
+çº¿ç¨‹æœåŠ¡åŸºç±»ï¼šThreadServiceBase
 
-###12¡¢WCF·â×°
-ÊµÏÖWCFËŞÖ÷¹¤³§µÈ¹¦ÄÜ
+###12ã€WCFå°è£…
+å®ç°WCFå®¿ä¸»å·¥å‚ç­‰åŠŸèƒ½
 
-###13¡¢Utitlies¹¤¾ßÀà
-Utils£º ¸¨Öú¹¤¾ßÏä£¬°üÀ¨IP»ñÈ¡¡¢×Ö·û×ª»»¡¢Ã¶¾Ù´¦ÀíµÈ
-TypeParse£ºÀàĞÍ×ª»¯¹¤¾ß
-ZipHelper£ºÑ¹ËõÓë½âÑ¹ËõÊµÏÖ
-ExportEngine£ºexcel µ¼Èë¡¢µ¼³ö¹ÜÀí
-NetMailUtils£º·¢ËÍÓÊ¼şÊµÏÖ
+###13ã€Utitlieså·¥å…·ç±»
+Utilsï¼š è¾…åŠ©å·¥å…·ç®±ï¼ŒåŒ…æ‹¬IPè·å–ã€å­—ç¬¦è½¬æ¢ã€æšä¸¾å¤„ç†ç­‰
+TypeParseï¼šç±»å‹è½¬åŒ–å·¥å…·
+ZipHelperï¼šå‹ç¼©ä¸è§£å‹ç¼©å®ç°
+ExportEngineï¼šexcel å¯¼å…¥ã€å¯¼å‡ºç®¡ç†
+NetMailUtilsï¼šå‘é€é‚®ä»¶å®ç°
+
+[githubåœ°å€ï¼šhttps://github.com/lfz233002072/tools](https://github.com/lfz233002072/tools)
+[oschinaåœ°å€:https://github.com/lfz233002072/tools](https://github.com/lfz233002072/tools)
