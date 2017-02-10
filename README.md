@@ -48,4 +48,4 @@ NetMailUtils：发送邮件实现
 
 [github地址：https://github.com/lfz233002072/tools](https://github.com/lfz233002072/tools)
 
-[oschina地址:https://github.com/lfz233002072/tools](https://github.com/lfz233002072/tools)
+[oschina地址:https://git.oschina.net/lfz/tools](https://git.oschina.net/lfz/tools)
